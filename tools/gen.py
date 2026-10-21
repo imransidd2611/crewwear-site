@@ -159,6 +159,7 @@ legal('returns','Returns & Shipping','Returns, replacements and shipping for cus
 IMG={'hvac':[('hoodie-sub-front.webp','Full-print hoodie, front'),('hoodie-sub-back.webp','Hoodie back with phone number'),('fleece-front.webp','Fleece hoodie, logo'),('fleece-back.webp','Fleece hoodie, back logo')],
 'plumbing':[('plumbing-hoodie-front.webp','Hoodie, front'),('plumbing-hoodie-back.webp','Hoodie back with services'),('plumbing-long-front.webp','Long sleeve, front'),('plumbing-long-back.webp','Long sleeve back with phone')],
 'pressure-washing':[('long-front.webp','Long sleeve, front'),('long-back.webp','Long sleeve back with services'),('tee-front.webp','Short sleeve tee'),('polo-front.webp','Polo shirt')]}
+SINGLE={'plumbing':'plumbing-hero.webp'}
 PAIR={'hvac':('hoodie-sub-front.webp','fleece-front.webp'),'plumbing':('plumbing-hoodie-front.webp','plumbing-long-back.webp'),'pressure-washing':('long-front.webp','tee-front.webp')}
 T={
 'hvac':dict(name='HVAC',h1='Custom HVAC uniforms that <em>sell</em> before you speak',
@@ -197,7 +198,9 @@ for slug,t in T.items():
     nm=t['name'] if t['name']=='HVAC' else t['name'].lower()
     imgs=IMG.get(slug)
     pr=PAIR.get(slug)
-    hero_img=f'<div class="duo"><div class="it m"><img src="/img/{pr[0]}" alt="{t["name"]} custom hoodie or shirt, front" width="900" height="900"></div><div class="it b"><img src="/img/{pr[1]}" alt="{t["name"]} custom shirt, back" width="900" height="900"></div></div>' if pr else ''
+    sh=SINGLE.get(slug)
+    hero_img=f'<div class="duo"><div class="it m"><img src="/img/{pr[0]}" alt="{t["name"]} custom hoodie or shirt, front" width="900" height="900"></div><div class="it b"><img src="/img/{pr[1]}" alt="{t["name"]} custom shirt, back" width="900" height="900"></div></div>' if pr and not sh else ''
+    if sh: hero_img=f'<img class="himg" src="/img/{sh}" alt="Custom {t["name"]} hoodie and long sleeve work shirt" width="{r.size[0] if False else 1100}" height="900" fetchpriority="high">'
     h+=f'''<section class="thero"><div class="wrap"><div>
 <p class="crumb"><a href="/">Home</a> / {t['name']}</p>
 <p class="eyebrow">Custom {t['name']} uniforms</p>

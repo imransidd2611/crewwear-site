@@ -254,3 +254,4 @@ img.info{max-width:520px;width:100%;margin:26px auto 0;border-radius:var(--r);bo
 .duo .it.b{right:0;top:10%;width:56%;z-index:1;animation:float 7s ease-in-out .8s infinite}
 .duo .it.b img{transform:rotate(7deg)}
 @media(max-width:520px){.chip{font-size:11px;padding:6px 10px}}
+.himg{width:100%;max-width:560px;height:auto;margin:0 auto;filter:drop-shadow(0 24px 24px rgba(14,27,44,.22));animation:float 6s ease-in-out infinite}
