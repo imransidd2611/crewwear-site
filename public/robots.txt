@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://crewwear-site.imransidd-co.workers.dev/sitemap.xml

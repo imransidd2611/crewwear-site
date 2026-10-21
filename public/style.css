@@ -192,3 +192,40 @@ img.info{max-width:520px;width:100%;margin:26px auto 0;border-radius:var(--r);bo
 .bun li{margin-bottom:5px}
 .bun .more{margin-top:auto}
 .bun .pick{margin-top:0}
+/* forms */
+.formbox{background:#fff;border:1px solid #e6e1d6;border-radius:var(--r);padding:22px}
+.lead-form{display:grid;gap:12px}
+.lead-form label{font-size:13px;font-weight:700;display:grid;gap:5px}
+.lead-form input,.lead-form select,.lead-form textarea{padding:14px;border-radius:12px;border:1.5px solid #d9d3c5;font:inherit;background:#fff;width:100%}
+.lead-form input:focus,.lead-form select:focus,.lead-form textarea:focus{outline:2px solid var(--ember);border-color:var(--ember)}
+.two{display:grid;gap:12px}
+@media(min-width:620px){.two{grid-template-columns:1fr 1fr}}
+.hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+.fmsg.err{color:#b3261e;font-weight:600;font-size:14px}
+.thanks{text-align:center;padding:14px}
+.thanks h3{font-size:24px;margin-bottom:8px}
+.thanks p{color:var(--slate);margin-bottom:12px}
+.callrow{text-align:center;margin-top:16px;color:var(--slate);font-size:15px}
+.callrow a{color:var(--ember);font-weight:700}
+/* legal + trade pages */
+.pagehead{background:var(--navy);color:#fff;padding:48px 0}
+.pagehead p{color:#b9c4d3;margin-top:8px}
+.prose{max-width:760px;margin:0 auto;padding:44px 20px 70px}
+.prose h2{font-size:24px;margin:30px 0 8px}
+.prose p,.prose li{color:#33414f;margin-bottom:10px}
+.prose ul{padding-left:20px;margin-bottom:10px}
+.prose a{color:var(--ember);font-weight:600}
+.thero{background:linear-gradient(180deg,var(--ice),var(--ivory));padding:44px 0 30px}
+.thero .wrap{display:grid;gap:22px;align-items:center}
+@media(min-width:900px){.thero .wrap{grid-template-columns:1.1fr 1fr}}
+.gal{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+@media(min-width:860px){.gal{grid-template-columns:repeat(4,1fr)}}
+.gal .g{background:linear-gradient(135deg,var(--ice),#fff);border:1px solid #e6e1d6;border-radius:var(--r);padding:10px}
+.gal .g img{aspect-ratio:1/1;object-fit:contain;width:100%}
+.gal .g span{display:block;text-align:center;font-size:12px;font-weight:700;color:var(--slate);padding:6px 0 2px}
+.soon{border:1.5px dashed #c9d3df;border-radius:var(--r);padding:26px;text-align:center;color:var(--slate);margin-top:22px;background:#fff}
+.bullets{display:grid;gap:12px;margin-top:22px}
+@media(min-width:760px){.bullets{grid-template-columns:repeat(3,1fr)}}
+.crumb{font-size:13px;color:var(--slate);margin-bottom:10px}
+.crumb a{color:var(--ember);font-weight:600}
+[hidden]{display:none!important}
