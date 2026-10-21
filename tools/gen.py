@@ -44,6 +44,16 @@ FOOT='''<footer><div class="wrap">
 <script src="/config.js"></script><script src="/app.js"></script>
 </body></html>
 '''
+PROOF='''<section class="proof"><div class="wrap">
+<p class="eyebrow">Real production photos</p>
+<h2>Printed, packed and <em>shipped</em></h2>
+<div class="pstrip">
+<a href="/gallery"><img src="/img/gallery-set-hvac.webp" alt="Full-print hoodie, tees and cap finished and laid out together" width="1000" height="1333" loading="lazy"></a>
+<a href="/gallery"><img src="/img/gallery-long-front-black.webp" alt="Black and green full-print long sleeve with chest logo" width="1000" height="1333" loading="lazy"></a>
+<a href="/gallery"><img src="/img/gallery-long-back-green.webp" alt="Large back print on a full-print long sleeve" width="1000" height="1333" loading="lazy"></a>
+<a href="/gallery" class="pmore"><img src="/img/gallery-long-front-blue.webp" alt="Blue water-print long sleeve" width="1000" height="1333" loading="lazy"><span>See the full gallery &rarr;</span></a>
+</div></div></section>
+'''
 STICKY='<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#" data-book class="btn btn-o" hidden>Book a call</a></div>\n'
 
 def form(idp='lead'):
@@ -236,7 +246,7 @@ for slug,t in T.items():
         h+='<p class="note">Example designs use sample brand names. Yours will carry your logo, colours and phone number.</p>'
     else:
         h+=f'<div class="soon"><b>{t["name"]} example designs are on the way.</b><p style="margin-top:6px">Want to see yours now? Send your logo and we will email a free full-print design within 24 hours.</p><a href="#design" class="btn btn-p" style="margin-top:12px">Get my free design</a></div>'
-    h+='</div></section>\n<section><div class="wrap" style="max-width:780px"><p class="eyebrow">FAQ</p><h2>Questions from <em>'+nm+'</em> crews</h2>'
+    h+='</div></section>\n'+PROOF+'<section><div class="wrap" style="max-width:780px"><p class="eyebrow">FAQ</p><h2>Questions from <em>'+nm+'</em> crews</h2>'
     for q,a in t['faq']+[('How fast do I get my design?','Within 24 hours of your request. Production starts after you approve it.'),('How long does delivery take?','Delivery usually takes 15 to 20 days after you approve your design and pay the deposit, depending on your order.'),('Who pays import duties and customs fees?','Orders ship from outside the United States. Any import duties, taxes or customs fees that apply are paid by the customer.')]:
         h+=f'<details><summary>{q}</summary><p>{a.replace(chr(92)+chr(39),chr(39))}</p></details>'
     h+='</div></section>\n'+form(f'lead-{slug}')+STICKY+FOOT

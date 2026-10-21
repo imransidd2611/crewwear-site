@@ -270,3 +270,11 @@ img.info{max-width:520px;width:100%;margin:26px auto 0;border-radius:var(--r);bo
 .real figure{border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid #e6e1d6}
 .real img{display:block;width:100%;height:auto}
 .real figcaption{padding:12px 14px 14px;font-size:14px;color:var(--slate);line-height:1.4}
+
+/* proof strip */
+.proof{background:var(--sand)}
+.pstrip{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+@media(min-width:860px){.pstrip{grid-template-columns:repeat(4,1fr);gap:16px}}
+.pstrip a{position:relative;display:block;border-radius:var(--r);overflow:hidden;background:#fff}
+.pstrip img{display:block;width:100%;height:auto}
+.pmore span{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 14px;background:linear-gradient(transparent,rgba(14,27,44,.88));color:#fff;font-weight:700;font-size:15px}
