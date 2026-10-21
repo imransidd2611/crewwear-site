@@ -12,6 +12,9 @@ HEAD='''<!doctype html>
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{url}">
+<link rel="alternate" hreflang="en-us" href="{url}">
+<link rel="alternate" hreflang="x-default" href="{url}">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
@@ -119,8 +122,10 @@ TERMS='''
 <p>You confirm that you own, or have permission to use, the logos and artwork you send us, and that they do not infringe anyone else's rights. We may decline artwork that is unlawful or infringing.</p>
 <h2>Payment</h2>
 <p>A deposit is due before production, with the balance due as stated on your quote. Payments are taken through a secure payment link.</p>
-<h2>Production, delivery and colour</h2>
-<p>Production and delivery times are estimates confirmed on your quote and may be affected by factors outside our control such as carrier delays and customs. Printed colours can differ slightly from what you see on a screen, and the same design can look slightly different across fabrics and garment types.</p>
+<h2>Delivery, duties and colour</h2>
+<p>Delivery usually takes 15 to 20 days after you approve your design and pay the deposit, depending on your order. This is an estimate, not a guarantee. We are not responsible for delays caused by carriers, customs or other things outside our control.</p>
+<p>Orders ship from outside the United States. Any import duties, taxes, customs fees or brokerage charges that apply to your order are the customer's responsibility and are paid by the customer.</p>
+<p>Printed colours can differ slightly from what you see on a screen, and the same design can look slightly different across fabrics and garment types.</p>
 <h2>Returns, replacements and refunds</h2>
 <p>See our <a href="/returns">Returns &amp; shipping</a> page.</p>
 <h2>Liability</h2>
@@ -145,8 +150,9 @@ RETURNS='''
 <p>Please check the size guidance before ordering. We are happy to help you choose sizes for your crew when you request your design.</p>
 <h2>Shipping</h2>
 <ul><li>Orders of $200 or more ship free.</li>
-<li>Production and delivery times, and the delivery fee for smaller orders, are shown on your quote before you pay.</li>
-<li>Orders are produced and shipped from outside the United States. Any import duties or taxes that apply will be explained on your quote so there are no surprises.</li>
+<li>Delivery usually takes 15 to 20 days after you approve your design and pay the deposit, depending on your order.</li>
+<li>Every order ships on its own by express courier to your door. The delivery fee for orders under $200 is shown on your quote before you pay.</li>
+<li>Orders ship from outside the United States. Any import duties, taxes or customs fees that apply are paid by the customer.</li>
 <li>You will receive tracking details once your order ships.</li></ul>
 <h2>Cancellations</h2>
 <p>You can cancel before you approve your design at no cost. After approval and deposit, production begins, so deposits are not refundable once production has started.</p>
@@ -195,11 +201,13 @@ urls=[SITE+'/']
 for slug,t in T.items():
     url=f'{SITE}/{slug}'; urls.append(url)
     faqld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a.replace("\\'","'")}} for q,a in t['faq']]}
-    svc={"@context":"https://schema.org","@type":"Service","name":f"Custom {t['name']} uniforms","provider":{"@type":"Organization","name":BRAND,"url":SITE},"areaServed":"US","description":t['desc']}
-    ld='<script type="application/ld+json">'+json.dumps(svc)+'</script>\n<script type="application/ld+json">'+json.dumps(faqld)+'</script>'
+    svc={"@context":"https://schema.org","@type":"Service","name":f"Custom {t['name']} uniforms","provider":{"@type":"Organization","name":BRAND,"url":SITE},"areaServed":{"@type":"Country","name":"United States"},"serviceType":"Custom sublimated work uniforms","description":t['desc']}
+    bc={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":SITE+'/'},{"@type":"ListItem","position":2,"name":f"{t['name']} uniforms","item":url}]}
+    wp={"@context":"https://schema.org","@type":"WebPage","name":t['title'],"url":url,"description":t['desc'],"isPartOf":{"@type":"WebSite","name":BRAND,"url":SITE+'/'},"inLanguage":"en-US"}
+    ld=''.join('<script type="application/ld+json">'+json.dumps(x)+'</script>\n' for x in (wp,svc,bc,faqld))
     h=HEAD.format(title=t['title']+' | '+BRAND,desc=t['desc'],url=url,site=SITE,ld=ld)+NAV
-    nm=t['name'] if t['name']=='HVAC' else t['name'].lower()
     imgs=IMG.get(slug)
+    nm=t['name'] if t['name']=='HVAC' else t['name'].lower()
     pr=PAIR.get(slug)
     sh=SINGLE.get(slug)
     hero_img=f'<div class="duo"><div class="it m"><img src="/img/{pr[0]}" alt="{t["name"]} custom hoodie or shirt, front" width="900" height="900"></div><div class="it b"><img src="/img/{pr[1]}" alt="{t["name"]} custom shirt, back" width="900" height="900"></div></div>' if pr and not sh else ''
@@ -209,6 +217,7 @@ for slug,t in T.items():
 <p class="eyebrow">Custom {t['name']} uniforms</p>
 <h1>{t['h1']}</h1>
 <p class="lead" style="margin:16px 0 22px">{t['sub']}</p>
+<p class="ans"><b>Quick answer:</b> CrewWear Custom makes full-print {nm} uniforms with your logo, colours and phone number. Design is free and arrives in 24 hours. Delivery to your door usually takes 15 to 20 days.</p>
 <div class="cta"><a href="#design" class="btn btn-p">Get my free design →</a><a href="/#bundles" class="btn btn-o">See crew bundles</a></div>
 <div class="checks"><span>Free design in 24h</span><span>No setup fees</span><span>Free delivery $200+</span></div>
 </div>{hero_img}</div></section>
@@ -216,7 +225,7 @@ for slug,t in T.items():
 <div class="stat"><b>24<small>h</small></b><span>Free design turnaround</span></div>
 <div class="stat"><b>$0</b><span>Design &amp; setup fees</span></div>
 <div class="stat"><b>100<small>%</small></b><span>Edge-to-edge print</span></div>
-<div class="stat"><b>$200<small>+</small></b><span>Ships free</span></div>
+<div class="stat"><b>15 to 20<small>d</small></b><span>Usual delivery to your door</span></div>
 </div></section>
 <section><div class="wrap"><p class="eyebrow">Why crews choose us</p><h2>Built for {nm} <em>crews</em></h2>
 <div class="bullets">'''
@@ -228,14 +237,14 @@ for slug,t in T.items():
     else:
         h+=f'<div class="soon"><b>{t["name"]} example designs are on the way.</b><p style="margin-top:6px">Want to see yours now? Send your logo and we will email a free full-print design within 24 hours.</p><a href="#design" class="btn btn-p" style="margin-top:12px">Get my free design</a></div>'
     h+='</div></section>\n<section><div class="wrap" style="max-width:780px"><p class="eyebrow">FAQ</p><h2>Questions from <em>'+nm+'</em> crews</h2>'
-    for q,a in t['faq']+[('How fast do I get my design?','Within 24 hours of your request. Production starts after you approve it.'),('What is the minimum order?','Details are confirmed on your quote. Send your design request and we will advise for your crew size.')]:
+    for q,a in t['faq']+[('How fast do I get my design?','Within 24 hours of your request. Production starts after you approve it.'),('How long does delivery take?','Delivery usually takes 15 to 20 days after you approve your design and pay the deposit, depending on your order.'),('Who pays import duties and customs fees?','Orders ship from outside the United States. Any import duties, taxes or customs fees that apply are paid by the customer.')]:
         h+=f'<details><summary>{q}</summary><p>{a.replace(chr(92)+chr(39),chr(39))}</p></details>'
     h+='</div></section>\n'+form(f'lead-{slug}')+STICKY+FOOT
     write(slug,h)
 
 for s in ('privacy','terms','returns'): urls.append(f'{SITE}/{s}')
-open(os.path.join(ROOT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc></url>\n' for u in urls)+'</urlset>\n')
-open(os.path.join(ROOT,'robots.txt'),'w').write(f'User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n')
+open(os.path.join(ROOT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc><lastmod>2026-10-21</lastmod><changefreq>weekly</changefreq><priority>{"1.0" if u==SITE+"/" else "0.8"}</priority></url>\n' for u in urls)+'</urlset>\n')
+open(os.path.join(ROOT,'robots.txt'),'w').write('User-agent: *\nAllow: /\n\n'+''.join(f'User-agent: {b}\nAllow: /\n\n' for b in ('GPTBot','ChatGPT-User','OAI-SearchBot','PerplexityBot','ClaudeBot','Claude-Web','Google-Extended','Applebot-Extended','CCBot'))+f'Sitemap: {SITE}/sitemap.xml\n')
 
 # ---- patch the homepage ----
 p=os.path.join(ROOT,'index.html'); h=open(p).read()
@@ -249,3 +258,52 @@ h=h.replace('<meta property="og:image" content="/img/hero.webp">','<meta propert
 h=h.replace('<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#bundles" class="btn btn-o">Bundles</a></div>','<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#bundles" class="btn btn-o">Bundles</a></div>')
 open(p,'w').write(h)
 print('done',len(urls),'urls')
+
+# ---- llms.txt (for AI search engines) ----
+open(os.path.join(ROOT,'llms.txt'),'w').write(f"""# {BRAND}
+
+> {BRAND} makes custom full-print (dye-sublimated) polyester work uniforms for US trade businesses: hoodies, long sleeves, polos, tees and caps for HVAC, plumbing, roofing, landscaping and pressure washing crews. Free design in 24 hours, no setup fees. Delivery usually takes 15 to 20 days after design approval and deposit, depending on the order. Free delivery on orders of $200 or more. Import duties, taxes and customs fees, if any, are paid by the customer.
+
+## Pages
+- [Home]({SITE}/): products, crew bundles, how it works, FAQ and the free design form
+- [HVAC uniforms]({SITE}/hvac)
+- [Plumbing uniforms]({SITE}/plumbing)
+- [Roofing uniforms]({SITE}/roofing)
+- [Landscaping uniforms]({SITE}/landscaping)
+- [Pressure washing uniforms]({SITE}/pressure-washing)
+- [Returns and shipping]({SITE}/returns)
+- [Terms]({SITE}/terms)
+- [Privacy]({SITE}/privacy)
+
+## Key facts
+- Product: full-print sublimated polyester garments; fleece and poly-cotton hoodies with logos
+- Customers: US trade and service businesses
+- Free design: yes, within 24 hours, no obligation
+- Delivery: usually 15 to 20 days after design approval and deposit, by express courier, each order shipped on its own
+- Duties and taxes: paid by the customer
+- Free delivery: orders of $200 or more
+""")
+
+# ---- 404 ----
+open(os.path.join(ROOT,'404.html'),'w').write(HEAD.format(title='Page not found | '+BRAND,desc='This page could not be found.',url=SITE+'/404',site=SITE,ld='').replace('<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">','<meta name="robots" content="noindex">')+NAV.replace('href="#design"','href="/#design"')+'<main class="prose" style="text-align:center"><h1>Page not found</h1><p>That page does not exist. Try the <a href="/">homepage</a> or <a href="/#design">get your free design</a>.</p></main>\n'+FOOT)
+
+# ---- patch homepage structured data + head ----
+hp=os.path.join(ROOT,'index.html'); h=open(hp).read()
+faqs=re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',h.split('id="faq"')[1],flags=re.S)
+strip=lambda s:re.sub(r'<[^>]+>','',s).replace('&amp;','&').strip()
+steps=[('Send your logo','Fill in the short form. Takes about a minute.'),('Get your free design','We send a full mockup within 24 hours. No obligation.'),('Approve and pay deposit','Tweak until you love it, then pay a deposit by secure link.'),('We make and ship','Production, then tracked delivery to your door, usually 15 to 20 days after approval and deposit.')]
+products=['Full-print sublimated hoodie','Fleece hoodie with custom logo','Full-print long sleeve work shirt','Full-print polo shirt','Full-print t-shirt','Printed trucker cap']
+org={"@context":"https://schema.org","@type":"Organization","@id":SITE+"/#org","name":BRAND,"url":SITE+"/","logo":SITE+"/favicon.svg","image":SITE+"/img/og.jpg","description":"Custom full-print sublimated work uniforms for US trade businesses: HVAC, plumbing, roofing, landscaping and pressure washing crews.","areaServed":{"@type":"Country","name":"United States"},"knowsAbout":["Custom work uniforms","Dye sublimation printing","Custom hoodies","Contractor apparel"]}
+web={"@context":"https://schema.org","@type":"WebSite","@id":SITE+"/#website","url":SITE+"/","name":BRAND,"publisher":{"@id":SITE+"/#org"},"inLanguage":"en-US"}
+il={"@context":"https://schema.org","@type":"ItemList","name":"CrewWear Custom products","itemListElement":[{"@type":"ListItem","position":i+1,"item":{"@type":"Product","name":n,"brand":{"@type":"Brand","name":BRAND},"description":"Custom made-to-order work apparel with your logo and design."}} for i,n in enumerate(products)]}
+howto={"@context":"https://schema.org","@type":"HowTo","name":"How to order custom work uniforms from CrewWear Custom","step":[{"@type":"HowToStep","position":i+1,"name":a,"text":b} for i,(a,b) in enumerate(steps)]}
+faqld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":strip(q),"acceptedAnswer":{"@type":"Answer","text":strip(a)}} for q,a in faqs]}
+block='<!--LD-->'+''.join('<script type="application/ld+json">'+json.dumps(x)+'</script>' for x in (org,web,il,howto,faqld))+'<!--/LD-->'
+h=re.sub(r'<script type="application/ld\+json">.*?</script>','',h,flags=re.S)
+h=re.sub(r'<!--LD-->.*?<!--/LD-->','',h,flags=re.S)
+h=h.replace('</head>',block+'\n</head>',1)
+if 'hreflang' not in h:
+    h=h.replace('<link rel="canonical" href="'+SITE+'/">','<link rel="canonical" href="'+SITE+'/">\n<link rel="alternate" hreflang="en-us" href="'+SITE+'/">\n<link rel="alternate" hreflang="x-default" href="'+SITE+'/">\n<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">')
+h=h.replace('<link rel="canonical" href="https://crewwear-site.imransidd-co.workers.dev/">','<link rel="canonical" href="'+SITE+'/">') if 'canonical' in h and 'hreflang' not in h else h
+open(hp,'w').write(h)
+print('faqs',len(faqs))

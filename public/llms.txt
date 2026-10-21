@@ -1,0 +1,22 @@
+# CrewWear Custom
+
+> CrewWear Custom makes custom full-print (dye-sublimated) polyester work uniforms for US trade businesses: hoodies, long sleeves, polos, tees and caps for HVAC, plumbing, roofing, landscaping and pressure washing crews. Free design in 24 hours, no setup fees. Delivery usually takes 15 to 20 days after design approval and deposit, depending on the order. Free delivery on orders of $200 or more. Import duties, taxes and customs fees, if any, are paid by the customer.
+
+## Pages
+- [Home](https://crewwear-site.imransidd-co.workers.dev/): products, crew bundles, how it works, FAQ and the free design form
+- [HVAC uniforms](https://crewwear-site.imransidd-co.workers.dev/hvac)
+- [Plumbing uniforms](https://crewwear-site.imransidd-co.workers.dev/plumbing)
+- [Roofing uniforms](https://crewwear-site.imransidd-co.workers.dev/roofing)
+- [Landscaping uniforms](https://crewwear-site.imransidd-co.workers.dev/landscaping)
+- [Pressure washing uniforms](https://crewwear-site.imransidd-co.workers.dev/pressure-washing)
+- [Returns and shipping](https://crewwear-site.imransidd-co.workers.dev/returns)
+- [Terms](https://crewwear-site.imransidd-co.workers.dev/terms)
+- [Privacy](https://crewwear-site.imransidd-co.workers.dev/privacy)
+
+## Key facts
+- Product: full-print sublimated polyester garments; fleece and poly-cotton hoodies with logos
+- Customers: US trade and service businesses
+- Free design: yes, within 24 hours, no obligation
+- Delivery: usually 15 to 20 days after design approval and deposit, by express courier, each order shipped on its own
+- Duties and taxes: paid by the customer
+- Free delivery: orders of $200 or more

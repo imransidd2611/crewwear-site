@@ -115,7 +115,7 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(250,248,244,.92);bac
 details{background:#fff;border:1px solid #e6e1d6;border-radius:12px;padding:18px 20px;margin-top:10px}
 summary{font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
 summary:after{content:"+";color:var(--ember);font-size:22px;line-height:1}
-details[open] summary:after{content:"–"}
+details[open] summary:after{content:"-"}
 details p{color:var(--slate);margin-top:10px}
 /* final cta + footer */
 .final{background:linear-gradient(135deg,var(--navy),#1b3350);color:#fff;text-align:center}
@@ -262,3 +262,4 @@ img.info{max-width:520px;width:100%;margin:26px auto 0;border-radius:var(--r);bo
 .opt summary:after{display:none}
 .opt label{margin-top:10px}
 .reply{text-align:center;font-size:13px;color:var(--slate);font-weight:600}
+.ans{background:#fff;border-left:4px solid var(--ember);border-radius:10px;padding:12px 14px;font-size:15px;color:var(--navy);margin:0 0 20px;max-width:640px}
