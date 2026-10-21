@@ -158,8 +158,10 @@ legal('returns','Returns & Shipping','Returns, replacements and shipping for cus
 # ------------- trade pages -------------
 IMG={'hvac':[('hoodie-sub-front.webp','Full-print hoodie, front'),('hoodie-sub-back.webp','Hoodie back with phone number'),('fleece-front.webp','Fleece hoodie, logo'),('fleece-back.webp','Fleece hoodie, back logo')],
 'plumbing':[('plumbing-hoodie-front.webp','Hoodie, front'),('plumbing-hoodie-back.webp','Hoodie back with services'),('plumbing-long-front.webp','Long sleeve, front'),('plumbing-long-back.webp','Long sleeve back with phone')],
+'roofing':[('roofing-hoodie-front.webp','Hoodie, front'),('roofing-hoodie-back.webp','Hoodie back with services'),('roofing-long-front.webp','Long sleeve, front'),('roofing-long-back.webp','Long sleeve back with phone')],
+'landscaping':[('landscaping-hoodie-front.webp','Hoodie, front'),('landscaping-hoodie-back.webp','Hoodie back with services'),('landscaping-long-front.webp','Long sleeve, front'),('landscaping-long-back.webp','Long sleeve back with phone')],
 'pressure-washing':[('long-front.webp','Long sleeve, front'),('long-back.webp','Long sleeve back with services'),('tee-front.webp','Short sleeve tee'),('polo-front.webp','Polo shirt')]}
-SINGLE={'plumbing':'plumbing-hero.webp'}
+SINGLE={'plumbing':'plumbing-hero.webp','roofing':'roofing-hero.webp','landscaping':'landscaping-hero.webp'}
 PAIR={'hvac':('hoodie-sub-front.webp','fleece-front.webp'),'plumbing':('plumbing-hoodie-front.webp','plumbing-long-back.webp'),'pressure-washing':('long-front.webp','tee-front.webp')}
 T={
 'hvac':dict(name='HVAC',h1='Custom HVAC uniforms that <em>sell</em> before you speak',
