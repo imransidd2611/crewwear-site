@@ -16,7 +16,7 @@ HEAD='''<!doctype html>
 <meta property="og:description" content="{desc}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{site}/img/og.png">
+<meta property="og:image" content="{site}/img/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0E1B2C">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -48,6 +48,7 @@ def form(idp='lead'):
 <p class="eyebrow">Free design</p>
 <h2>Get your free design <em>today</em></h2>
 <p class="lead" style="margin-bottom:22px">Tell us who you are and we'll email your mockup within 24 hours. No obligation.</p>
+<div class="guar"><span>✓ Free design, no obligation</span><span>✓ No setup fees</span><span>✓ Defects reprinted or replaced</span><span>✓ Free delivery on $200+</span></div>
 <div class="formbox">
 <form class="lead-form" id="%s" novalidate>
 <div id="bsum" class="bsum" hidden></div>
@@ -61,9 +62,9 @@ def form(idp='lead'):
 <label>Email<input name="email" type="email" required autocomplete="email" placeholder="you@company.com"></label>
 <label>Phone<input name="phone" type="tel" required autocomplete="tel" placeholder="(555) 123-4567"></label>
 </div>
-<label>Your trade<select name="trade"><option>HVAC</option><option>Plumbing</option><option>Roofing</option><option>Landscaping</option><option>Pressure washing</option><option>Other</option></select></label>
-<label>Anything we should know? (optional)<textarea name="message" rows="3" placeholder="Colours, logo link, crew size, deadline…"></textarea></label>
-<button class="btn btn-p" type="submit">Send me my free design →</button>
+<details class="opt"><summary>Add notes (optional)</summary><label>Your trade<select name="trade"><option>HVAC</option><option>Plumbing</option><option>Roofing</option><option>Landscaping</option><option>Pressure washing</option><option>Other</option></select></label><label>Anything we should know?<textarea name="message" rows="3" placeholder="Colours, logo link, crew size, deadline…"></textarea></label></details>
+<button class="btn btn-p" type="submit">Get my free design →</button>
+<p class="reply">⏱ We reply within 24 hours with your design.</p>
 <p class="fmsg" role="status"></p>
 <p class="note">We only use your details to send your design and quote. See our <a href="/privacy" style="text-decoration:underline">privacy policy</a>.</p>
 </form></div>
@@ -244,7 +245,7 @@ for nm,slug in (('HVAC','hvac'),('Plumbing','plumbing'),('Roofing','roofing'),('
 h=re.sub(r'<footer>.*?</footer>',FOOT.split('<script')[0].replace('href="#design"','href="#design"'),h,count=1,flags=re.S)
 if '/app.js' not in h: h=h.replace('</body>','<script src="/config.js"></script><script src="/app.js"></script>\n</body>')
 if 'favicon.svg' not in h: h=h.replace('<link rel="stylesheet" href="/style.css">','<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/style.css">')
-h=h.replace('<meta property="og:image" content="/img/hero.webp">','<meta property="og:image" content="'+SITE+'/img/og.png">\n<meta property="og:url" content="'+SITE+'/">\n<meta name="twitter:card" content="summary_large_image">')
+h=h.replace('<meta property="og:image" content="/img/hero.webp">','<meta property="og:image" content="'+SITE+'/img/og.jpg">\n<meta property="og:url" content="'+SITE+'/">\n<meta name="twitter:card" content="summary_large_image">')
 h=h.replace('<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#bundles" class="btn btn-o">Bundles</a></div>','<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#bundles" class="btn btn-o">Bundles</a></div>')
 open(p,'w').write(h)
 print('done',len(urls),'urls')

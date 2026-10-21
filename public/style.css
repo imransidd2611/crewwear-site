@@ -255,3 +255,10 @@ img.info{max-width:520px;width:100%;margin:26px auto 0;border-radius:var(--r);bo
 .duo .it.b img{transform:rotate(7deg)}
 @media(max-width:520px){.chip{font-size:11px;padding:6px 10px}}
 .himg{width:100%;max-width:560px;height:auto;margin:0 auto;filter:drop-shadow(0 24px 24px rgba(14,27,44,.22));animation:float 6s ease-in-out infinite}
+.guar{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;margin:0 0 18px;font-size:14px;font-weight:700;color:var(--navy)}
+.guar span{color:var(--navy)}
+.opt{border:0!important;background:none!important;padding:0!important;margin:0!important}
+.opt summary{font-size:14px;color:var(--ember);justify-content:flex-start;gap:6px}
+.opt summary:after{display:none}
+.opt label{margin-top:10px}
+.reply{text-align:center;font-size:13px;color:var(--slate);font-weight:600}
