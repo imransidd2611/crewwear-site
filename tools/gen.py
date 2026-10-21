@@ -157,6 +157,7 @@ legal('returns','Returns & Shipping','Returns, replacements and shipping for cus
 
 # ------------- trade pages -------------
 IMG={'hvac':[('hoodie-sub-front.webp','Full-print hoodie, front'),('hoodie-sub-back.webp','Hoodie back with phone number'),('fleece-front.webp','Fleece hoodie, logo'),('fleece-back.webp','Fleece hoodie, back logo')],
+'plumbing':[('plumbing-hoodie-front.webp','Hoodie, front'),('plumbing-hoodie-back.webp','Hoodie back with services'),('plumbing-long-front.webp','Long sleeve, front'),('plumbing-long-back.webp','Long sleeve back with phone')],
 'pressure-washing':[('long-front.webp','Long sleeve, front'),('long-back.webp','Long sleeve back with services'),('tee-front.webp','Short sleeve tee'),('polo-front.webp','Polo shirt')]}
 T={
 'hvac':dict(name='HVAC',h1='Custom HVAC uniforms that <em>sell</em> before you speak',
