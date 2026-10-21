@@ -134,3 +134,17 @@ footer a{display:block;padding:2px 0}footer a:hover{color:#fff}
 @media(min-width:760px){.sticky{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto}}
 @media(max-width:520px){.nav .btn{padding:9px 12px;font-size:13px;white-space:nowrap}.logo{font-size:16px;white-space:nowrap}.logo i{width:30px;height:30px}}
+.pic{position:relative;border:0;background:linear-gradient(135deg,var(--ice),#fff);cursor:pointer;overflow:hidden}
+.pic img{position:absolute;inset:6%;width:88%;height:88%;object-fit:contain;transition:opacity .3s}
+.pic .bk{opacity:0}
+.pic:hover .bk,.pic:focus .bk,.pic.flip .bk{opacity:1}
+.pic:hover img:first-child,.pic:focus img:first-child,.pic.flip img:first-child{opacity:0}
+.pic .hint{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:600;color:var(--slate);background:rgba(255,255,255,.85);padding:3px 10px;border-radius:99px}
+.anat{padding-bottom:20px}
+.anat img{margin-top:26px;border-radius:var(--r);border:1px solid #e6e1d6;box-shadow:0 20px 40px -26px rgba(14,27,44,.4);width:100%}
+.pic img{inset:2%;width:96%;height:96%}
+.pic .hint{bottom:6px;right:6px;left:auto;transform:none;font-size:10px;padding:2px 8px}
+.scrollx{margin-top:26px}
+.scrollx img{margin-top:0}
+.swipe{display:none;text-align:center;font-size:12px;color:var(--slate);margin-top:8px}
+@media(max-width:760px){.scrollx{overflow-x:auto;margin-right:-20px;margin-left:-20px;padding:0 20px;-webkit-overflow-scrolling:touch}.scrollx img{width:820px;max-width:none}.swipe{display:block}}
