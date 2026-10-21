@@ -278,3 +278,13 @@ img.info{max-width:520px;width:100%;margin:26px auto 0;border-radius:var(--r);bo
 .pstrip a{position:relative;display:block;border-radius:var(--r);overflow:hidden;background:#fff}
 .pstrip img{display:block;width:100%;height:auto}
 .pmore span{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 14px;background:linear-gradient(transparent,rgba(14,27,44,.88));color:#fff;font-weight:700;font-size:15px}
+/* desktop: compact proof strip and gallery */
+@media(min-width:860px){
+.proof{padding:44px 0}
+.proof h2{margin-bottom:0}
+.pstrip{margin-top:18px}
+.pstrip img{aspect-ratio:1/1;object-fit:cover;object-position:50% 38%}
+.real{grid-template-columns:repeat(5,1fr);gap:12px}
+.real img{aspect-ratio:4/5;object-fit:cover;object-position:50% 40%}
+.real figcaption{font-size:13px;padding:10px 12px 12px}
+}
