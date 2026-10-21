@@ -288,3 +288,5 @@ img.info{max-width:520px;width:100%;margin:26px auto 0;border-radius:var(--r);bo
 .real img{aspect-ratio:4/5;object-fit:cover;object-position:50% 40%}
 .real figcaption{font-size:13px;padding:10px 12px 12px}
 }
+
+.next{margin:14px auto 0;padding-left:20px;max-width:420px;font-size:13px;color:var(--slate);line-height:1.7;text-align:left}

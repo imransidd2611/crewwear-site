@@ -21,7 +21,7 @@ fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":
 if(!j.success)throw new Error(j.message||"failed");
 if(window.gtag)gtag("event","generate_lead");if(window.fbq)fbq("track","Lead");
 var box=form.closest(".formbox")||form.parentNode;
-box.innerHTML='<div class="thanks"><h3>Thanks, '+(String(d.get("name")).split(" ")[0]||"")+'! You\'re in.</h3><p>We\'ll email your free design to <b></b> within 24 hours.</p>'+(C.bookingUrl?'<p>Want to talk it through sooner?</p><a class="btn btn-p" href="'+C.bookingUrl+'">Book a quick call</a>':'')+'</div>';
+box.innerHTML='<div class="thanks"><h3>Thanks, '+(String(d.get("name")).split(" ")[0]||"")+'! You\'re in.</h3><p>We\'ll email your free design to <b></b> within 24 hours. To speed things up, reply to our email with your logo and brand colours.</p>'+(C.bookingUrl?'<p>Want to talk it through sooner?</p><a class="btn btn-p" href="'+C.bookingUrl+'">Book a quick call</a>':'')+'</div>';
 box.querySelector("b").textContent=d.get("email");
 }).catch(function(){btn.disabled=false;btn.textContent=old;msg.textContent="Something went wrong sending that. Please try again.";msg.className="fmsg err"});
 })});

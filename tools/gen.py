@@ -25,7 +25,7 @@ HEAD='''<!doctype html>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css?v=3">
+<link rel="stylesheet" href="/style.css?v=4">
 {ld}
 </head>
 <body>
@@ -78,6 +78,7 @@ def form(idp='lead'):
 <details class="opt"><summary>Add notes (optional)</summary><label>Your trade<select name="trade"><option>HVAC</option><option>Plumbing</option><option>Roofing</option><option>Landscaping</option><option>Pressure washing</option><option>Other</option></select></label><label>Anything we should know?<textarea name="message" rows="3" placeholder="Colours, logo link, crew size, deadline…"></textarea></label></details>
 <button class="btn btn-p" type="submit">Get my free design →</button>
 <p class="reply">⏱ We reply within 24 hours with your design.</p>
+<ol class="next"><li>We review your business and logo.</li><li>We create your proposed design.</li><li>We email it to you within 24 hours.</li><li>You can ask for changes before deciding to order.</li></ol>
 <p class="fmsg" role="status"></p>
 <p class="note">We only use your details to send your design and quote. See our <a href="/privacy" style="text-decoration:underline">privacy policy</a>.</p>
 </form></div>
@@ -189,7 +190,7 @@ T={
 'plumbing':dict(name='Plumbing',h1='Custom plumbing uniforms your customers <em>remember</em>',
  sub='Full-print hoodies, long sleeves, polos and caps for plumbing crews. Water, steel and copper themes in your own colours.',
  title='Custom Plumbing Uniforms & Work Shirts',desc='Custom full-print plumbing uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
- why=[('Trust at the door','Matching, clean uniforms tell homeowners they are letting in a professional business.'),('Your brand in every kitchen and basement','Your logo and number printed edge to edge stays visible when crews are bending, kneeling and reaching.'),('Made for wet, messy work','Moisture-wicking polyester dries fast and prints that cannot peel or crack.')],
+ why=[('Trust at the door','Matching, clean uniforms tell homeowners they are letting in a professional business.'),('Your brand in every kitchen and basement','Your logo and number printed edge to edge stays visible when crews are bending, kneeling and reaching.'),('Made for wet, messy work','Moisture-wicking polyester dries fast, and the print is part of the fabric rather than a layer on top.')],
  faq=[('Can you match my van wrap colours?','Yes. Send your logo and van photo and we will match the colours.'),('Can I get polos for office staff?','Yes. Mix polos, tees, hoodies and caps in one order or in a bundle.')]),
 'roofing':dict(name='Roofing',h1='Custom roofing crew gear that handles the <em>heat</em>',
  sub='Full-print long sleeves, hoodies, tees and caps for roofing crews. Light polyester that keeps cooler in the sun, with your brand on every piece.',
@@ -199,12 +200,12 @@ T={
 'landscaping':dict(name='Landscaping',h1='Custom landscaping uniforms that <em>grow</em> your brand',
  sub='Full-print polos, tees, long sleeves, hoodies and caps for lawn and landscape crews. Fresh greens or your own colours, with your logo everywhere.',
  title='Custom Landscaping Uniforms & Crew Shirts',desc='Custom full-print landscaping uniforms, polos, tees, long sleeves and caps. Free design in 24 hours. Free delivery on orders $200+.',
- why=[('Every truck, every yard','A matching crew in bold, clean uniforms makes your business stand out on every street you work.'),('Tough, fade-resistant print','Dye-sublimated print is part of the fabric, so it does not crack or peel after washes and long days.'),('Cool and light','Polyester that breathes in heat, with long sleeves for sun and hoodies for the shoulder seasons.')],
+ why=[('Every truck, every yard','A matching crew in bold, clean uniforms makes your business stand out on every street you work.'),('Print built into the fabric','Dye-sublimated print bonds into the polyester instead of sitting on top, made for washes and long days.'),('Cool and light','Polyester that breathes in heat, with long sleeves for sun and hoodies for the shoulder seasons.')],
  faq=[('Can the design use my green and brand colours?','Yes. We build the design around your logo and brand colours.'),('How many pieces can I order?','Any quantity. See the bundles for set pricing on crews of different sizes.')]),
 'pressure-washing':dict(name='Pressure washing',h1='Custom pressure washing uniforms <em>made</em> to be seen',
  sub='Full-print long sleeves, tees, polos and caps for pressure washing and soft washing crews. Water splashes, your logo, your services and phone number all printed edge to edge.',
  title='Custom Pressure Washing Uniforms & Shirts',desc='Custom full-print pressure washing uniforms, long sleeves, tees, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
- why=[('Your services on your back','List driveways, roofs, fleets and your phone number across the back so every customer can call you.'),('Made for wet work','Moisture-wicking polyester dries fast and the print cannot peel or fade like a patch or sticker.'),('Crew numbers and flag patches','Add crew numbers, a printed flag and contrast panels for a proper team-kit look.')],
+ why=[('Your services on your back','List driveways, roofs, fleets and your phone number across the back so every customer can call you.'),('Made for wet work','Moisture-wicking polyester dries fast, and the print is part of the fabric, not a patch or sticker.'),('Crew numbers and flag patches','Add crew numbers, a printed flag and contrast panels for a proper team-kit look.')],
  faq=[('Can the back list my services?','Yes. Phone numbers, email, services and a licensed-and-insured line can all be printed on the back.'),('Do you do hooded sun shirts?','Ask us in the form. We can quote hooded long sleeves for sun protection.')]),
 }
 urls=[SITE+'/']
@@ -277,7 +278,7 @@ for nm,slug in (('HVAC','hvac'),('Plumbing','plumbing'),('Roofing','roofing'),('
     h=re.sub(r'<a class="trade" href="[^"]*">(<i>[^<]*</i>'+nm+')',r'<a class="trade" href="/'+slug+r'">\1',h)
 h=re.sub(r'<footer>.*?</footer>',FOOT.split('<script')[0].replace('href="#design"','href="#design"'),h,count=1,flags=re.S)
 if '/app.js' not in h: h=h.replace('</body>','<script src="/config.js"></script><script src="/app.js"></script>\n</body>')
-if 'favicon.svg' not in h: h=h.replace('<link rel="stylesheet" href="/style.css?v=3">','<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/style.css?v=3">')
+if 'favicon.svg' not in h: h=h.replace('<link rel="stylesheet" href="/style.css?v=4">','<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/style.css?v=4">')
 h=h.replace('<meta property="og:image" content="/img/hero.webp">','<meta property="og:image" content="'+SITE+'/img/og.jpg">\n<meta property="og:url" content="'+SITE+'/">\n<meta name="twitter:card" content="summary_large_image">')
 h=h.replace('<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#bundles" class="btn btn-o">Bundles</a></div>','<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#bundles" class="btn btn-o">Bundles</a></div>')
 open(p,'w').write(h)
