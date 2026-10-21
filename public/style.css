@@ -148,3 +148,7 @@ footer a{display:block;padding:2px 0}footer a:hover{color:#fff}
 .scrollx img{margin-top:0}
 .swipe{display:none;text-align:center;font-size:12px;color:var(--slate);margin-top:8px}
 @media(max-width:760px){.scrollx{overflow-x:auto;margin-right:-20px;margin-left:-20px;padding:0 20px;-webkit-overflow-scrolling:touch}.scrollx img{width:820px;max-width:none}.swipe{display:block}}
+.feat{display:grid;gap:14px;margin-top:26px}
+@media(min-width:760px){.feat{grid-template-columns:repeat(4,1fr)}}
+.feat .card h3{margin-bottom:6px}
+.feat .card p{color:var(--slate);font-size:15px}
