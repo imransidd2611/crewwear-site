@@ -159,6 +159,7 @@ legal('returns','Returns & Shipping','Returns, replacements and shipping for cus
 IMG={'hvac':[('hoodie-sub-front.webp','Full-print hoodie, front'),('hoodie-sub-back.webp','Hoodie back with phone number'),('fleece-front.webp','Fleece hoodie, logo'),('fleece-back.webp','Fleece hoodie, back logo')],
 'plumbing':[('plumbing-hoodie-front.webp','Hoodie, front'),('plumbing-hoodie-back.webp','Hoodie back with services'),('plumbing-long-front.webp','Long sleeve, front'),('plumbing-long-back.webp','Long sleeve back with phone')],
 'pressure-washing':[('long-front.webp','Long sleeve, front'),('long-back.webp','Long sleeve back with services'),('tee-front.webp','Short sleeve tee'),('polo-front.webp','Polo shirt')]}
+PAIR={'hvac':('hoodie-sub-front.webp','fleece-front.webp'),'plumbing':('plumbing-hoodie-front.webp','plumbing-long-back.webp'),'pressure-washing':('long-front.webp','tee-front.webp')}
 T={
 'hvac':dict(name='HVAC',h1='Custom HVAC uniforms that <em>sell</em> before you speak',
  sub='Full-print hoodies, long sleeves, polos and caps for heating and cooling crews. Your logo, your colours, your phone number, all over the garment.',
@@ -195,7 +196,8 @@ for slug,t in T.items():
     h=HEAD.format(title=t['title']+' | '+BRAND,desc=t['desc'],url=url,site=SITE,ld=ld)+NAV
     nm=t['name'] if t['name']=='HVAC' else t['name'].lower()
     imgs=IMG.get(slug)
-    hero_img=f'<img src="/img/{imgs[0][0]}" alt="{imgs[0][1]}" width="900" height="900" style="width:100%;max-width:420px;height:auto;margin:0 auto;filter:drop-shadow(0 24px 26px rgba(14,27,44,.22))">' if imgs else ''
+    pr=PAIR.get(slug)
+    hero_img=f'<div class="duo"><div class="it m"><img src="/img/{pr[0]}" alt="{t["name"]} custom hoodie or shirt, front" width="900" height="900"></div><div class="it b"><img src="/img/{pr[1]}" alt="{t["name"]} custom shirt, back" width="900" height="900"></div></div>' if pr else ''
     h+=f'''<section class="thero"><div class="wrap"><div>
 <p class="crumb"><a href="/">Home</a> / {t['name']}</p>
 <p class="eyebrow">Custom {t['name']} uniforms</p>
