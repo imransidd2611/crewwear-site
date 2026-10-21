@@ -263,3 +263,10 @@ img.info{max-width:520px;width:100%;margin:26px auto 0;border-radius:var(--r);bo
 .opt label{margin-top:10px}
 .reply{text-align:center;font-size:13px;color:var(--slate);font-weight:600}
 .ans{background:#fff;border-left:4px solid var(--ember);border-radius:10px;padding:12px 14px;font-size:15px;color:var(--navy);margin:0 0 20px;max-width:640px}
+
+/* gallery */
+.real{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:860px){.real{grid-template-columns:repeat(3,1fr);gap:20px}}
+.real figure{border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid #e6e1d6}
+.real img{display:block;width:100%;height:auto}
+.real figcaption{padding:12px 14px 14px;font-size:14px;color:var(--slate);line-height:1.4}

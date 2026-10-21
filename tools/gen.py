@@ -32,14 +32,14 @@ HEAD='''<!doctype html>
 '''
 NAV='''<header class="nav"><div class="wrap">
 <a href="/" class="logo"><i>CW</i>CrewWear Custom</a>
-<nav><a href="/#trades">Trades</a><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/#how">How it works</a><a href="/#faq">FAQ</a></nav>
+<nav><a href="/#trades">Trades</a><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/#how">How it works</a><a href="/#faq">FAQ</a></nav>
 <a href="#design" class="btn btn-p">Get free design</a>
 </div></header>
 '''
 FOOT='''<footer><div class="wrap">
 <div><b>CrewWear Custom</b>Full-print custom uniforms for US trade businesses.</div>
 <div><b>Trades</b><a href="/hvac">HVAC</a><a href="/plumbing">Plumbing</a><a href="/roofing">Roofing</a><a href="/landscaping">Landscaping</a><a href="/pressure-washing">Pressure washing</a></div>
-<div><b>Company</b><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/#faq">FAQ</a><a href="/returns">Returns &amp; shipping</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+<div><b>Company</b><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/#faq">FAQ</a><a href="/returns">Returns &amp; shipping</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
 </div></footer>
 <script src="/config.js"></script><script src="/app.js"></script>
 </body></html>
@@ -242,6 +242,20 @@ for slug,t in T.items():
     h+='</div></section>\n'+form(f'lead-{slug}')+STICKY+FOOT
     write(slug,h)
 
+
+# ---- gallery page ----
+GAL=[('gallery-set-hvac.webp','Full-print hoodie, short sleeve tees and trucker cap, finished and ready to ship','Full-print hoodie, two short-sleeve tees and a matching cap laid out together'),
+('gallery-long-front-black.webp','Full-print long sleeve with chest logo and flag sleeve patch','Black and green full-print long sleeve shirt with a plumbing company logo on a truck tailgate'),
+('gallery-long-back-green.webp','Large back print with the company logo, printed edge to edge','Back of a black and green full-print long sleeve with a lawn and landscape logo'),
+('gallery-long-front-white.webp','Light colourway with bold contrast sleeves','White, red and black full-print long sleeve, packed and ready to ship'),
+('gallery-long-front-blue.webp','Small chest logo with a full-print water design','Blue and white full-print long sleeve with a small chest logo on a rail')]
+gurl=f'{SITE}/gallery'
+gh=HEAD.format(title='Gallery: finished full-print uniforms | '+BRAND,desc='Photos of finished full-print custom uniforms: hoodies, long sleeves and tees printed edge to edge for trade crews.',url=gurl,site=SITE,ld='')+NAV.replace('href="#design"','href="#design"')
+gh+='<div class="pagehead"><div class="wrap"><h1>Finished <em>uniforms</em></h1><p>Real production photos. Yours will carry your logo, colours and phone number.</p></div></div>\n<section><div class="wrap"><div class="real">'
+gh+=''.join(f'<figure><img src="/img/{f}" alt="{alt}" width="1000" height="1333" loading="lazy"><figcaption>{cap}</figcaption></figure>' for f,cap,alt in GAL)
+gh+='</div></div></section>\n'+form('lead-gallery')+STICKY+FOOT
+write('gallery',gh)
+urls.append(gurl)
 for s in ('privacy','terms','returns'): urls.append(f'{SITE}/{s}')
 open(os.path.join(ROOT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc><lastmod>2026-10-21</lastmod><changefreq>weekly</changefreq><priority>{"1.0" if u==SITE+"/" else "0.8"}</priority></url>\n' for u in urls)+'</urlset>\n')
 open(os.path.join(ROOT,'robots.txt'),'w').write('User-agent: *\nAllow: /\n\n'+''.join(f'User-agent: {b}\nAllow: /\n\n' for b in ('GPTBot','ChatGPT-User','OAI-SearchBot','PerplexityBot','ClaudeBot','Claude-Web','Google-Extended','Applebot-Extended','CCBot'))+f'Sitemap: {SITE}/sitemap.xml\n')
