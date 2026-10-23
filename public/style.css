@@ -290,3 +290,8 @@ img.info{max-width:520px;width:100%;margin:26px auto 0;border-radius:var(--r);bo
 }
 
 .next{margin:14px auto 0;padding-left:20px;max-width:420px;font-size:13px;color:var(--slate);line-height:1.7;text-align:left}
+
+.pgroup{margin:34px 0 0;font-size:22px;font-weight:800;letter-spacing:-.5px}
+.pgroup small{display:block;font-size:14px;font-weight:500;color:var(--slate);letter-spacing:0;margin-top:2px}
+.pgroup+.prods{margin-top:14px}
+@media(min-width:860px){.prods.four{grid-template-columns:repeat(4,1fr)}}

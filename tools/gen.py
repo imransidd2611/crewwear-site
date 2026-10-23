@@ -25,7 +25,7 @@ HEAD='''<!doctype html>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css?v=4">
+<link rel="stylesheet" href="/style.css?v=6">
 {ld}
 </head>
 <body>
@@ -278,7 +278,7 @@ for nm,slug in (('HVAC','hvac'),('Plumbing','plumbing'),('Roofing','roofing'),('
     h=re.sub(r'<a class="trade" href="[^"]*">(<i>[^<]*</i>'+nm+')',r'<a class="trade" href="/'+slug+r'">\1',h)
 h=re.sub(r'<footer>.*?</footer>',FOOT.split('<script')[0].replace('href="#design"','href="#design"'),h,count=1,flags=re.S)
 if '/app.js' not in h: h=h.replace('</body>','<script src="/config.js"></script><script src="/app.js"></script>\n</body>')
-if 'favicon.svg' not in h: h=h.replace('<link rel="stylesheet" href="/style.css?v=4">','<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/style.css?v=4">')
+if 'favicon.svg' not in h: h=h.replace('<link rel="stylesheet" href="/style.css?v=6">','<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/style.css?v=6">')
 h=h.replace('<meta property="og:image" content="/img/hero.webp">','<meta property="og:image" content="'+SITE+'/img/og.jpg">\n<meta property="og:url" content="'+SITE+'/">\n<meta name="twitter:card" content="summary_large_image">')
 h=h.replace('<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#bundles" class="btn btn-o">Bundles</a></div>','<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#bundles" class="btn btn-o">Bundles</a></div>')
 open(p,'w').write(h)
@@ -317,7 +317,7 @@ hp=os.path.join(ROOT,'index.html'); h=open(hp).read()
 faqs=re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',h.split('id="faq"')[1],flags=re.S)
 strip=lambda s:re.sub(r'<[^>]+>','',s).replace('&amp;','&').strip()
 steps=[('Send your logo','Fill in the short form. Takes about a minute.'),('Get your free design','We send a full mockup within 24 hours. No obligation.'),('Approve and pay deposit','Tweak until you love it, then pay a deposit by secure link.'),('We make and ship','Production, then tracked delivery to your door, usually 15 to 20 days after approval and deposit.')]
-products=['Full-print sublimated hoodie','Fleece hoodie with custom logo','Full-print long sleeve work shirt','Full-print polo shirt','Full-print t-shirt','Printed trucker cap']
+products=['Full-Print Hoodie (sublimated)','Full-Print Long Sleeve (sublimated)','Full-Print Tee (sublimated)','Full-Print Polo (sublimated)','Classic Fleece Hoodie with logo','Classic Cotton Tee with logo','Classic Cap with logo']
 org={"@context":"https://schema.org","@type":"Organization","@id":SITE+"/#org","name":BRAND,"url":SITE+"/","logo":SITE+"/favicon.svg","image":SITE+"/img/og.jpg","description":"Custom full-print sublimated work uniforms for US trade businesses: HVAC, plumbing, roofing, landscaping and pressure washing crews.","areaServed":{"@type":"Country","name":"United States"},"knowsAbout":["Custom work uniforms","Dye sublimation printing","Custom hoodies","Contractor apparel"]}
 web={"@context":"https://schema.org","@type":"WebSite","@id":SITE+"/#website","url":SITE+"/","name":BRAND,"publisher":{"@id":SITE+"/#org"},"inLanguage":"en-US"}
 il={"@context":"https://schema.org","@type":"ItemList","name":"CrewWear Custom products","itemListElement":[{"@type":"ListItem","position":i+1,"item":{"@type":"Product","name":n,"brand":{"@type":"Brand","name":BRAND},"description":"Custom made-to-order work apparel with your logo and design."}} for i,n in enumerate(products)]}
