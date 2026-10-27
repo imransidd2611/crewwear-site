@@ -5,6 +5,6 @@ window.CW_CONFIG = {
   // Link to a booking page (Google Calendar appointment schedule with Google Meet, Cal.com, Calendly...). Shows a "Book a call" button.
   bookingUrl: "",
   // Optional analytics
-  ga4: "",        // e.g. G-XXXXXXXXXX
+  ga4: "G-48DB57DB1E",        // e.g. G-XXXXXXXXXX
   metaPixel: ""   // e.g. 1234567890
 };
