@@ -32,14 +32,14 @@ HEAD='''<!doctype html>
 '''
 NAV='''<header class="nav"><div class="wrap">
 <a href="/" class="logo"><i>CW</i>CrewWear Custom</a>
-<nav><a href="/#trades">Trades</a><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/#how">How it works</a><a href="/#faq">FAQ</a></nav>
+<nav><a href="/#trades">Trades</a><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/guides">Guides</a><a href="/#how">How it works</a><a href="/#faq">FAQ</a></nav>
 <a href="#design" class="btn btn-p">Get free design</a>
 </div></header>
 '''
 FOOT='''<footer><div class="wrap">
 <div><b>CrewWear Custom</b>Full-print custom uniforms for US trade businesses.</div>
 <div><b>Trades</b><a href="/hvac">HVAC</a><a href="/plumbing">Plumbing</a><a href="/roofing">Roofing</a><a href="/landscaping">Landscaping</a><a href="/pressure-washing">Pressure washing</a></div>
-<div><b>Company</b><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/#faq">FAQ</a><a href="/returns">Returns &amp; shipping</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+<div><b>Company</b><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/guides">Guides</a><a href="/#faq">FAQ</a><a href="/returns">Returns &amp; shipping</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
 </div></footer>
 <script src="/config.js"></script><script src="/app.js"></script>
 </body></html>
@@ -261,14 +261,39 @@ GAL=[('gallery-set-hvac.webp','Full-print hoodie, short sleeve tees and trucker 
 ('gallery-long-front-white.webp','Light colourway with bold contrast sleeves','White, red and black full-print long sleeve, packed and ready to ship'),
 ('gallery-long-front-blue.webp','Small chest logo with a full-print water design','Blue and white full-print long sleeve with a small chest logo on a rail')]
 gurl=f'{SITE}/gallery'
-gh=HEAD.format(title='Gallery: finished full-print uniforms | '+BRAND,desc='Photos of finished full-print custom uniforms: hoodies, long sleeves and tees printed edge to edge for trade crews.',url=gurl,site=SITE,ld='')+NAV.replace('href="#design"','href="#design"')
+gal_ld='<script type="application/ld+json">'+json.dumps({"@context":"https://schema.org","@graph":[{"@type":"ImageGallery","name":"Finished full-print uniforms","url":gurl,"publisher":{"@id":SITE+"/#org"},"image":[{"@type":"ImageObject","contentUrl":SITE+"/img/"+f,"caption":cap} for f,cap,alt in GAL]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"Gallery","item":gurl}]}]})+'</script>'
+gh=HEAD.format(title='Gallery: finished full-print uniforms | '+BRAND,desc='Photos of finished full-print custom uniforms: hoodies, long sleeves and tees printed edge to edge for trade crews.',url=gurl,site=SITE,ld=gal_ld)+NAV.replace('href="#design"','href="#design"')
 gh+='<div class="pagehead"><div class="wrap"><h1>Finished <em>uniforms</em></h1><p>Real production photos. Yours will carry your logo, colours and phone number.</p></div></div>\n<section><div class="wrap"><div class="real">'
 gh+=''.join(f'<figure><img src="/img/{f}" alt="{alt}" width="1000" height="1333" loading="lazy"><figcaption>{cap}</figcaption></figure>' for f,cap,alt in GAL)
 gh+='</div></div></section>\n'+form('lead-gallery')+STICKY+FOOT
 write('gallery',gh)
+
+# ---- guides ----
+from guides import GUIDES
+os.makedirs(os.path.join(ROOT,'guides'),exist_ok=True)
+strip_=lambda t:re.sub(r'<[^>]+>','',t)
+for g in GUIDES:
+    gu=f"{SITE}/guides/{g['slug']}"
+    ld=json.dumps({"@context":"https://schema.org","@graph":[
+      {"@type":"Article","headline":strip_(g['title']),"description":g['desc'],"mainEntityOfPage":gu,"datePublished":"2026-10-28","dateModified":"2026-10-28","author":{"@id":SITE+"/#org"},"publisher":{"@id":SITE+"/#org"},"image":SITE+"/img/og.jpg","inLanguage":"en-US"},
+      {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in g['faqs']]},
+      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"Guides","item":SITE+"/guides"},{"@type":"ListItem","position":3,"name":strip_(g['title']),"item":gu}]}]})
+    h=HEAD.format(title=g['title']+' | '+BRAND,desc=g['desc'],url=gu,site=SITE,ld='<script type="application/ld+json">'+ld+'</script>')+NAV
+    h+=f'<div class="pagehead"><div class="wrap"><h1>{g["h1"]}</h1><p>{g["intro"]}</p></div></div>\n<main class="prose">'
+    h+=''.join(f'<h2>{a}</h2>{b}' for a,b in g['sections'])
+    h+='<h2>Common questions</h2>'+''.join(f'<h3>{q}</h3><p>{a}</p>' for q,a in g['faqs'])
+    h+='</main>\n'+form('lead-guide')+STICKY+FOOT
+    write('guides/'+g['slug'],h); urls.append(gu)
+hub=SITE+'/guides'
+hld=json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"Uniform guides","url":hub,"hasPart":[{"@type":"Article","headline":strip_(g['title']),"url":f"{SITE}/guides/{g['slug']}"} for g in GUIDES]})
+h=HEAD.format(title='Work uniform guides for trade owners | '+BRAND,desc='Plain answers on custom work uniforms for trade crews: cost, print methods, what to order and how long it takes.',url=hub,site=SITE,ld='<script type="application/ld+json">'+hld+'</script>')+NAV
+h+='<div class="pagehead"><div class="wrap"><h1>Uniform <em>guides</em></h1><p>Plain answers for trade owners outfitting a crew.</p></div></div>\n<main class="prose">'
+h+=''.join(f'<h2><a href="/guides/{g["slug"]}">{strip_(g["title"])}</a></h2><p>{g["intro"]}</p>' for g in GUIDES)
+h+='</main>\n'+form('lead-guides')+STICKY+FOOT
+write('guides',h); urls.append(hub)
 urls.append(gurl)
 for s in ('privacy','terms','returns'): urls.append(f'{SITE}/{s}')
-open(os.path.join(ROOT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc><lastmod>2026-10-21</lastmod><changefreq>weekly</changefreq><priority>{"1.0" if u==SITE+"/" else "0.8"}</priority></url>\n' for u in urls)+'</urlset>\n')
+open(os.path.join(ROOT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc><lastmod>2026-10-28</lastmod><changefreq>weekly</changefreq><priority>{"1.0" if u==SITE+"/" else "0.8"}</priority></url>\n' for u in urls)+'</urlset>\n')
 open(os.path.join(ROOT,'robots.txt'),'w').write('User-agent: *\nAllow: /\n\n'+''.join(f'User-agent: {b}\nAllow: /\n\n' for b in ('GPTBot','ChatGPT-User','OAI-SearchBot','PerplexityBot','ClaudeBot','Claude-Web','Google-Extended','Applebot-Extended','CCBot'))+f'Sitemap: {SITE}/sitemap.xml\n')
 
 # ---- patch the homepage ----
@@ -296,12 +321,15 @@ open(os.path.join(ROOT,'llms.txt'),'w').write(f"""# {BRAND}
 - [Roofing uniforms]({SITE}/roofing)
 - [Landscaping uniforms]({SITE}/landscaping)
 - [Pressure washing uniforms]({SITE}/pressure-washing)
+- [Gallery]({SITE}/gallery): real photos of finished full-print uniforms
+- [Guides]({SITE}/guides): cost, sublimation vs screen print, crew checklist, timeline
 - [Returns and shipping]({SITE}/returns)
 - [Terms]({SITE}/terms)
 - [Privacy]({SITE}/privacy)
 
 ## Key facts
-- Product: full-print sublimated polyester garments; fleece and poly-cotton hoodies with logos
+- Product: full-print sublimated polyester hoodies, long sleeves, tees and polos, plus a Classic line (fleece hoodie, cotton tee, cap) with logos
+- Setup fees: none
 - Customers: US trade and service businesses
 - Free design: yes, within 24 hours, no obligation
 - Delivery: usually 15 to 20 days after design approval and deposit, by express courier, each order shipped on its own
