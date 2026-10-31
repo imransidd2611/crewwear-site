@@ -328,7 +328,7 @@ open(os.path.join(ROOT,'llms.txt'),'w').write(f"""# {BRAND}
 - [Privacy]({SITE}/privacy)
 
 ## Key facts
-- Product: full-print sublimated polyester hoodies, long sleeves, tees and polos, plus a Classic line (fleece hoodie, cotton tee, cap) with logos
+- Product: full-print sublimated polyester hoodies, long sleeves, tees and polos, plus a Classic line (fleece hoodie, cotton tee, cap, neon safety vest) with logos
 - Setup fees: none
 - Customers: US trade and service businesses
 - Free design: yes, within 24 hours, no obligation
@@ -345,7 +345,7 @@ hp=os.path.join(ROOT,'index.html'); h=open(hp).read()
 faqs=re.findall(r'<details><summary>(.*?)</summary><p>(.*?)</p></details>',h.split('id="faq"')[1],flags=re.S)
 strip=lambda s:re.sub(r'<[^>]+>','',s).replace('&amp;','&').strip()
 steps=[('Send your logo','Fill in the short form. Takes about a minute.'),('Get your free design','We send a full mockup within 24 hours. No obligation.'),('Approve and pay deposit','Tweak until you love it, then pay a deposit by secure link.'),('We make and ship','Production, then tracked delivery to your door, usually 15 to 20 days after approval and deposit.')]
-products=['Full-Print Hoodie (sublimated)','Full-Print Long Sleeve (sublimated)','Full-Print Tee (sublimated)','Full-Print Polo (sublimated)','Classic Fleece Hoodie with logo','Classic Cotton Tee with logo','Classic Cap with logo']
+products=['Full-Print Hoodie (sublimated)','Full-Print Long Sleeve (sublimated)','Full-Print Tee (sublimated)','Full-Print Polo (sublimated)','Classic Fleece Hoodie with logo','Classic Cotton Tee with logo','Classic Cap with logo','Neon Safety Vest with logo']
 org={"@context":"https://schema.org","@type":"Organization","@id":SITE+"/#org","name":BRAND,"url":SITE+"/","logo":SITE+"/favicon.svg","image":SITE+"/img/og.jpg","description":"Custom full-print sublimated work uniforms for US trade businesses: HVAC, plumbing, roofing, landscaping and pressure washing crews.","areaServed":{"@type":"Country","name":"United States"},"knowsAbout":["Custom work uniforms","Dye sublimation printing","Custom hoodies","Contractor apparel"]}
 web={"@context":"https://schema.org","@type":"WebSite","@id":SITE+"/#website","url":SITE+"/","name":BRAND,"publisher":{"@id":SITE+"/#org"},"inLanguage":"en-US"}
 il={"@context":"https://schema.org","@type":"ItemList","name":"CrewWear Custom products","itemListElement":[{"@type":"ListItem","position":i+1,"item":{"@type":"Product","name":n,"brand":{"@type":"Brand","name":BRAND},"description":"Custom made-to-order work apparel with your logo and design."}} for i,n in enumerate(products)]}
