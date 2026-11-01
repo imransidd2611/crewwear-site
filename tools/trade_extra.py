@@ -42,6 +42,7 @@ deep='''<h3>What a landscaping crew usually orders</h3>
 <p>Most owners plan uniforms in winter for spring hiring. Send your logo in January and have the crew ready before the first mow. See <a href="/guides/how-long-do-custom-uniforms-take">how long an order takes</a>.</p>''',
 faqs=[('What are the best landscaping shirts and lawn care shirts?','Lightweight polyester landscaping shirts, landscaping t shirts and lawn care shirts keep crews cooler, and a full-print design makes your brand visible on every yard. Send your logo for a free design.'),
 ('What should a landscaping crew wear?','Lightweight polos or tees for heat, long sleeves for sun coverage, a cap, and a hoodie for cold starts. Matching colours across the crew make your business look established.'),
+('Where can I get lawn mowing shirts and lawn care t shirts with my logo?','CrewWear Custom makes lawn mowing shirts, lawn care t shirts, long sleeves and hoodies with your logo, colours and phone number. The design is free within 24 hours.'),
 ('When should landscapers order uniforms?','Late winter, before spring hiring. Allow time for design approval and delivery, which usually takes 15 to 20 days after approval and deposit.'),
 ('Can I get uniforms for both landscaping and snow removal?','Yes. Mix lightweight pieces with hoodies and layers in one order, or ask for a bundle that covers both seasons.')]),
 'pressure-washing':dict(
