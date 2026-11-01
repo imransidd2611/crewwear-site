@@ -276,8 +276,9 @@ from guides import GUIDES
 from guides_more import MORE
 from guides_more2 import MORE2
 from guides_more3 import MORE3
+from guides_more4 import MORE4
 from pages_kw import KW
-GUIDES=GUIDES+MORE+MORE2+MORE3+KW
+GUIDES=GUIDES+MORE+MORE2+MORE3+MORE4+KW
 os.makedirs(os.path.join(ROOT,'guides'),exist_ok=True)
 strip_=lambda t:re.sub(r'<[^>]+>','',t)
 for g in GUIDES:
