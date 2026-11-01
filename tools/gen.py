@@ -39,7 +39,7 @@ NAV='''<header class="nav"><div class="wrap">
 FOOT='''<footer><div class="wrap">
 <div><b>CrewWear Custom</b>Full-print custom uniforms for US trade businesses.</div>
 <div><b>Trades</b><a href="/hvac">HVAC</a><a href="/plumbing">Plumbing</a><a href="/roofing">Roofing</a><a href="/landscaping">Landscaping</a><a href="/pressure-washing">Pressure washing</a></div>
-<div><b>Company</b><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/guides">Guides</a><a href="/#faq">FAQ</a><a href="/about">About</a><a href="/returns">Returns &amp; shipping</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+<div><b>Company</b><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/custom-safety-vests">Safety vests</a><a href="/long-sleeve-work-shirts">Long sleeve shirts</a><a href="/guides">Guides</a><a href="/#faq">FAQ</a><a href="/about">About</a><a href="/returns">Returns &amp; shipping</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
 </div></footer>
 <script src="/config.js"></script><script src="/app.js"></script>
 </body></html>
@@ -275,26 +275,28 @@ write('gallery',gh)
 from guides import GUIDES
 from guides_more import MORE
 from guides_more2 import MORE2
-GUIDES=GUIDES+MORE+MORE2
+from pages_kw import KW
+GUIDES=GUIDES+MORE+MORE2+KW
 os.makedirs(os.path.join(ROOT,'guides'),exist_ok=True)
 strip_=lambda t:re.sub(r'<[^>]+>','',t)
 for g in GUIDES:
-    gu=f"{SITE}/guides/{g['slug']}"
+    _root=g.get('root'); gu=f"{SITE}/{g['slug']}" if _root else f"{SITE}/guides/{g['slug']}"
     ld=json.dumps({"@context":"https://schema.org","@graph":[
       {"@type":"Article","headline":strip_(g['title']),"description":g['desc'],"mainEntityOfPage":gu,"datePublished":"2026-10-28","dateModified":"2026-10-28","author":{"@id":SITE+"/#org"},"publisher":{"@id":SITE+"/#org"},"image":SITE+"/img/og.jpg","inLanguage":"en-US"},
       {"@type":"FAQPage","mainEntity":[{"@type":"Question","name":q,"acceptedAnswer":{"@type":"Answer","text":a}} for q,a in g['faqs']]},
-      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"Guides","item":SITE+"/guides"},{"@type":"ListItem","position":3,"name":strip_(g['title']),"item":gu}]}]})
+      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"Guides","item":SITE+"/guides"},{"@type":"ListItem","position":3,"name":strip_(g['title']),"item":gu}] if not _root else [{"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},{"@type":"ListItem","position":2,"name":strip_(g['title']),"item":gu}]}]})
     h=HEAD.format(title=g['title']+' | '+BRAND,desc=g['desc'],url=gu,site=SITE,ld='<script type="application/ld+json">'+ld+'</script>')+NAV
     h+=f'<div class="pagehead"><div class="wrap"><h1>{g["h1"]}</h1><p>{g["intro"]}</p></div></div>\n<main class="prose">'
     h+=''.join(f'<h2>{a}</h2>{b}' for a,b in g['sections'])
     h+='<h2>Common questions</h2>'+''.join(f'<h3>{q}</h3><p>{a}</p>' for q,a in g['faqs'])
     h+='</main>\n'+form('lead-guide')+STICKY+FOOT
-    write('guides/'+g['slug'],h); urls.append(gu)
+    write(g['slug'] if _root else 'guides/'+g['slug'],h); urls.append(gu)
 hub=SITE+'/guides'
-hld=json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"Uniform guides","url":hub,"hasPart":[{"@type":"Article","headline":strip_(g['title']),"url":f"{SITE}/guides/{g['slug']}"} for g in GUIDES]})
+GONLY=[g for g in GUIDES if not g.get('root')]
+hld=json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"Uniform guides","url":hub,"hasPart":[{"@type":"Article","headline":strip_(g['title']),"url":f"{SITE}/guides/{g['slug']}"} for g in GONLY]})
 h=HEAD.format(title='Work uniform guides for trade owners | '+BRAND,desc='Plain answers on custom work uniforms for trade crews: cost, print methods, what to order and how long it takes.',url=hub,site=SITE,ld='<script type="application/ld+json">'+hld+'</script>')+NAV
 h+='<div class="pagehead"><div class="wrap"><h1>Uniform <em>guides</em></h1><p>Plain answers for trade owners outfitting a crew.</p></div></div>\n<main class="prose">'
-h+=''.join(f'<h2><a href="/guides/{g["slug"]}">{strip_(g["title"])}</a></h2><p>{g["intro"]}</p>' for g in GUIDES)
+h+=''.join(f'<h2><a href="/guides/{g["slug"]}">{strip_(g["title"])}</a></h2><p>{g["intro"]}</p>' for g in GONLY)
 h+='</main>\n'+form('lead-guides')+STICKY+FOOT
 write('guides',h); urls.append(hub)
 
@@ -332,7 +334,8 @@ open(p,'w').write(h)
 print('done',len(urls),'urls')
 
 # ---- llms.txt (for AI search engines) ----
-GUIDE_LINES=''.join(f"  - [{re.sub(r'<[^>]+>','',g['title'])}]({SITE}/guides/{g['slug']})\n" for g in GUIDES)
+GUIDE_LINES=''.join(f"  - [{re.sub(r'<[^>]+>','',g['title'])}]({SITE}/guides/{g['slug']})\n" for g in GUIDES if not g.get('root'))
+ROOT_LINES=''.join(f"- [{re.sub(r'<[^>]+>','',g['title'])}]({SITE}/{g['slug']})\n" for g in GUIDES if g.get('root'))
 open(os.path.join(ROOT,'llms.txt'),'w').write(f"""# {BRAND}
 
 > {BRAND} makes custom full-print (dye-sublimated) polyester work uniforms for US trade businesses: hoodies, long sleeves, polos, tees and caps for HVAC, plumbing, roofing, landscaping and pressure washing crews. Free design in 24 hours, no setup fees. Delivery usually takes 15 to 20 days after design approval and deposit, depending on the order. Free delivery on orders of $200 or more. Import duties, taxes and customs fees, if any, are paid by the customer.
@@ -345,7 +348,7 @@ open(os.path.join(ROOT,'llms.txt'),'w').write(f"""# {BRAND}
 - [Landscaping uniforms]({SITE}/landscaping)
 - [Pressure washing uniforms]({SITE}/pressure-washing)
 - [Gallery]({SITE}/gallery): photos of finished pieces and how your logo looks on them
-- [About]({SITE}/about)
+{ROOT_LINES}- [About]({SITE}/about)
 - [Guides]({SITE}/guides): plain answers for trade owners
 {GUIDE_LINES}- [Returns and shipping]({SITE}/returns)
 - [Terms]({SITE}/terms)
