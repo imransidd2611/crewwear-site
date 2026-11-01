@@ -184,7 +184,7 @@ PAIR={'hvac':('hoodie-sub-front.webp','fleece-front.webp'),'plumbing':('plumbing
 T={
 'hvac':dict(name='HVAC',h1='Custom HVAC uniforms that <em>sell</em> before you speak',
  sub='Full-print hoodies, long sleeves, polos and caps for heating and cooling crews. Your logo, your colours, your phone number, all over the garment.',
- title='Custom HVAC Uniforms & Work Hoodies',desc='Custom full-print HVAC uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom HVAC Shirts & Uniforms: Work Shirts and Hoodies',desc='Custom full-print HVAC uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Look like a company','A crew in matching ice-and-flame gear looks established the moment it steps out of the van.'),('Your number on every back','Your phone number and services printed edge to edge turns every job site into a billboard.'),('Built for the attic and the roof','Lightweight polyester that breathes in summer, with hoodies and layers for winter call-outs.')],
  faq=[('Can the design show heating and cooling?','Yes. A frost and flame theme is our most popular HVAC look, and we can match it to your logo colours.'),('Can I put each technician name on the sleeve?','Yes. Names and crew numbers can be added per person.')]),
 'plumbing':dict(name='Plumbing',h1='Custom plumbing uniforms your customers <em>remember</em>',
@@ -199,7 +199,7 @@ T={
  faq=[('Is the fabric breathable?','Yes. Our polyester garments are lightweight and moisture-wicking. Exact fabric details are confirmed on your quote.'),('Can I get different looks for crew and office?','Yes. Mix garments and designs in one order.')]),
 'landscaping':dict(name='Landscaping',h1='Custom landscaping uniforms that <em>grow</em> your brand',
  sub='Full-print polos, tees, long sleeves, hoodies and caps for lawn and landscape crews. Fresh greens or your own colours, with your logo everywhere.',
- title='Custom Landscaping Shirts: Full-Print Sublimated Uniforms',desc='Custom full-print landscaping uniforms, polos, tees, long sleeves and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom Landscaping & Lawn Care Shirts: Full-Print Uniforms',desc='Custom full-print landscaping uniforms, polos, tees, long sleeves and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Every truck, every yard','A matching crew in bold, clean uniforms makes your business stand out on every street you work.'),('Print built into the fabric','Dye-sublimated print bonds into the polyester instead of sitting on top, made for washes and long days.'),('Cool and light','Polyester that breathes in heat, with long sleeves for sun and hoodies for the shoulder seasons.')],
  faq=[('Can the design use my green and brand colours?','Yes. We build the design around your logo and brand colours.'),('How many pieces can I order?','Any quantity. See the bundles for set pricing on crews of different sizes.')]),
 'pressure-washing':dict(name='Pressure washing',h1='Custom pressure washing uniforms <em>made</em> to be seen',
