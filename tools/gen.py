@@ -259,11 +259,12 @@ GAL=[('gallery-set-hvac.webp','Full-print hoodie, short sleeve tees and trucker 
 ('gallery-long-front-black.webp','Full-print long sleeve with chest logo and flag sleeve patch','Black and green full-print long sleeve shirt with a plumbing company logo on a truck tailgate'),
 ('gallery-long-back-green.webp','Large back print with the company logo, printed edge to edge','Back of a black and green full-print long sleeve with a lawn and landscape logo'),
 ('gallery-long-front-white.webp','Light colourway with bold contrast sleeves','White, red and black full-print long sleeve, packed and ready to ship'),
-('gallery-long-front-blue.webp','Small chest logo with a full-print water design','Blue and white full-print long sleeve with a small chest logo on a rail')]
+('gallery-long-front-blue.webp','Small chest logo with a full-print water design','Blue and white full-print long sleeve with a small chest logo on a rail'),
+('gallery-vest-worker.webp','Neon safety vest with the company logo printed large on the back','Roofer in a neon yellow-green safety vest with silver reflective strips and a printed logo on the back, carrying a hose beside a work truck')]
 gurl=f'{SITE}/gallery'
 gal_ld='<script type="application/ld+json">'+json.dumps({"@context":"https://schema.org","@graph":[{"@type":"ImageGallery","name":"Finished full-print uniforms","url":gurl,"publisher":{"@id":SITE+"/#org"},"image":[{"@type":"ImageObject","contentUrl":SITE+"/img/"+f,"caption":cap} for f,cap,alt in GAL]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":SITE+"/"},{"@type":"ListItem","position":2,"name":"Gallery","item":gurl}]}]})+'</script>'
 gh=HEAD.format(title='Gallery: finished full-print uniforms | '+BRAND,desc='Photos of finished full-print custom uniforms: hoodies, long sleeves and tees printed edge to edge for trade crews.',url=gurl,site=SITE,ld=gal_ld)+NAV.replace('href="#design"','href="#design"')
-gh+='<div class="pagehead"><div class="wrap"><h1>Finished <em>uniforms</em></h1><p>Real production photos. Yours will carry your logo, colours and phone number.</p></div></div>\n<section><div class="wrap"><div class="real">'
+gh+='<div class="pagehead"><div class="wrap"><h1>Finished <em>uniforms</em></h1><p>Finished pieces and how your logo looks on them. Yours will carry your logo, colours and phone number.</p></div></div>\n<section><div class="wrap"><div class="real">'
 gh+=''.join(f'<figure><img src="/img/{f}" alt="{alt}" width="1000" height="1333" loading="lazy"><figcaption>{cap}</figcaption></figure>' for f,cap,alt in GAL)
 gh+='</div></div></section>\n'+form('lead-gallery')+STICKY+FOOT
 write('gallery',gh)
