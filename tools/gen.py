@@ -322,7 +322,7 @@ open(os.path.join(ROOT,'llms.txt'),'w').write(f"""# {BRAND}
 - [Roofing uniforms]({SITE}/roofing)
 - [Landscaping uniforms]({SITE}/landscaping)
 - [Pressure washing uniforms]({SITE}/pressure-washing)
-- [Gallery]({SITE}/gallery): real photos of finished full-print uniforms
+- [Gallery]({SITE}/gallery): photos of finished pieces and how your logo looks on them
 - [Guides]({SITE}/guides): cost, sublimation vs screen print, crew checklist, timeline
 - [Returns and shipping]({SITE}/returns)
 - [Terms]({SITE}/terms)
