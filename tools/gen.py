@@ -39,7 +39,7 @@ NAV='''<header class="nav"><div class="wrap">
 FOOT='''<footer><div class="wrap">
 <div><b>CrewWear Custom</b>Full-print custom uniforms for US trade businesses.</div>
 <div><b>Trades</b><a href="/hvac">HVAC</a><a href="/plumbing">Plumbing</a><a href="/roofing">Roofing</a><a href="/landscaping">Landscaping</a><a href="/pressure-washing">Pressure washing</a></div>
-<div><b>Company</b><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/custom-safety-vests">Safety vests</a><a href="/long-sleeve-work-shirts">Long sleeve shirts</a><a href="/guides">Guides</a><a href="/#faq">FAQ</a><a href="/about">About</a><a href="/returns">Returns &amp; shipping</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+<div><b>Company</b><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/custom-safety-vests">Safety vests</a><a href="/long-sleeve-work-shirts">Long sleeve shirts</a><a href="/construction-crew-shirts">Construction shirts</a><a href="/pest-control-uniforms">Pest control</a><a href="/mechanic-shirts">Mechanic shirts</a><a href="/custom-fishing-shirts">Fishing shirts</a><a href="/guides">Guides</a><a href="/#faq">FAQ</a><a href="/about">About</a><a href="/returns">Returns &amp; shipping</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
 </div></footer>
 <script src="/config.js"></script><script src="/app.js"></script>
 </body></html>
@@ -277,8 +277,9 @@ from guides_more import MORE
 from guides_more2 import MORE2
 from guides_more3 import MORE3
 from guides_more4 import MORE4
+from pages_kw2 import KW2
 from pages_kw import KW
-GUIDES=GUIDES+MORE+MORE2+MORE3+MORE4+KW
+GUIDES=GUIDES+MORE+MORE2+MORE3+MORE4+KW+KW2
 os.makedirs(os.path.join(ROOT,'guides'),exist_ok=True)
 strip_=lambda t:re.sub(r'<[^>]+>','',t)
 for g in GUIDES:
