@@ -1,7 +1,7 @@
 # Generates legal + trade pages into ../public. Run: python3 tools/gen.py
 import os,json,re
 ROOT=os.path.join(os.path.dirname(__file__),'..','public')
-SITE='https://crewwear-site.imransidd-co.workers.dev'   # change when the real domain is live
+SITE='https://crewwearcustom.com'
 BRAND='CrewWear Custom'
 
 HEAD='''<!doctype html>

@@ -28,4 +28,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://crewwear-site.imransidd-co.workers.dev/sitemap.xml
+Sitemap: https://crewwearcustom.com/sitemap.xml
