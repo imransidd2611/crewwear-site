@@ -194,17 +194,17 @@ T={
  faq=[('Can you match my van wrap colours?','Yes. Send your logo and van photo and we will match the colours.'),('Can I get polos for office staff?','Yes. Mix polos, tees, hoodies and caps in one order or in a bundle.')]),
 'roofing':dict(name='Roofing',h1='Custom roofing crew gear that handles the <em>heat</em>',
  sub='Full-print long sleeves, hoodies, tees and caps for roofing crews. Light polyester that keeps cooler in the sun, with your brand on every piece.',
- title='Custom Roofing Crew Uniforms & Sun Shirts',desc='Custom full-print roofing uniforms, sun-ready long sleeves, hoodies, tees and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom Roofing Shirts: Full-Print Sublimated Crew Uniforms',desc='Custom full-print roofing uniforms, sun-ready long sleeves, hoodies, tees and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Sun-ready long sleeves','Lightweight long sleeves cover arms from the sun, and the full-print design keeps your brand visible from the street.'),('Seen from the ground','Big back prints with your name and number work like a moving sign on every roof and every lot.'),('One look for the whole crew','Crews, foremen and estimators in a matching set look like one serious operation.')],
  faq=[('Is the fabric breathable?','Yes. Our polyester garments are lightweight and moisture-wicking. Exact fabric details are confirmed on your quote.'),('Can I get different looks for crew and office?','Yes. Mix garments and designs in one order.')]),
 'landscaping':dict(name='Landscaping',h1='Custom landscaping uniforms that <em>grow</em> your brand',
  sub='Full-print polos, tees, long sleeves, hoodies and caps for lawn and landscape crews. Fresh greens or your own colours, with your logo everywhere.',
- title='Custom Landscaping Uniforms & Crew Shirts',desc='Custom full-print landscaping uniforms, polos, tees, long sleeves and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom Landscaping Shirts: Full-Print Sublimated Uniforms',desc='Custom full-print landscaping uniforms, polos, tees, long sleeves and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Every truck, every yard','A matching crew in bold, clean uniforms makes your business stand out on every street you work.'),('Print built into the fabric','Dye-sublimated print bonds into the polyester instead of sitting on top, made for washes and long days.'),('Cool and light','Polyester that breathes in heat, with long sleeves for sun and hoodies for the shoulder seasons.')],
  faq=[('Can the design use my green and brand colours?','Yes. We build the design around your logo and brand colours.'),('How many pieces can I order?','Any quantity. See the bundles for set pricing on crews of different sizes.')]),
 'pressure-washing':dict(name='Pressure washing',h1='Custom pressure washing uniforms <em>made</em> to be seen',
  sub='Full-print long sleeves, tees, polos and caps for pressure washing and soft washing crews. Water splashes, your logo, your services and phone number all printed edge to edge.',
- title='Custom Pressure Washing Uniforms & Shirts',desc='Custom full-print pressure washing uniforms, long sleeves, tees, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom Pressure Washing Shirts: Full-Print Sublimated Uniforms',desc='Custom full-print pressure washing uniforms, long sleeves, tees, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Your services on your back','List driveways, roofs, fleets and your phone number across the back so every customer can call you.'),('Made for wet work','Moisture-wicking polyester dries fast, and the print is part of the fabric, not a patch or sticker.'),('Crew numbers and flag patches','Add crew numbers, a printed flag and contrast panels for a proper team-kit look.')],
  faq=[('Can the back list my services?','Yes. Phone numbers, email, services and a licensed-and-insured line can all be printed on the back.'),('Do you do hooded sun shirts?','Ask us in the form. We can quote hooded long sleeves for sun protection.')]),
 }
@@ -274,7 +274,8 @@ write('gallery',gh)
 # ---- guides ----
 from guides import GUIDES
 from guides_more import MORE
-GUIDES=GUIDES+MORE
+from guides_more2 import MORE2
+GUIDES=GUIDES+MORE+MORE2
 os.makedirs(os.path.join(ROOT,'guides'),exist_ok=True)
 strip_=lambda t:re.sub(r'<[^>]+>','',t)
 for g in GUIDES:
