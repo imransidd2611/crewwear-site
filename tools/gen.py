@@ -184,12 +184,12 @@ PAIR={'hvac':('hoodie-sub-front.webp','fleece-front.webp'),'plumbing':('plumbing
 T={
 'hvac':dict(name='HVAC',h1='Custom HVAC uniforms that <em>sell</em> before you speak',
  sub='Full-print hoodies, long sleeves, polos and caps for heating and cooling crews. Your logo, your colours, your phone number, all over the garment.',
- title='Custom HVAC Shirts & Uniforms: Work Shirts and Hoodies',desc='Custom full-print HVAC uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom HVAC Uniforms & HVAC Shirts: Work Shirts and Hoodies',desc='Custom full-print HVAC uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Look like a company','A crew in matching ice-and-flame gear looks established the moment it steps out of the van.'),('Your number on every back','Your phone number and services printed edge to edge turns every job site into a billboard.'),('Built for the attic and the roof','Lightweight polyester that breathes in summer, with hoodies and layers for winter call-outs.')],
  faq=[('Can the design show heating and cooling?','Yes. A frost and flame theme is our most popular HVAC look, and we can match it to your logo colours.'),('Can I put each technician name on the sleeve?','Yes. Names and crew numbers can be added per person.')]),
 'plumbing':dict(name='Plumbing',h1='Custom plumbing uniforms your customers <em>remember</em>',
  sub='Full-print hoodies, long sleeves, polos and caps for plumbing crews. Water, steel and copper themes in your own colours.',
- title='Custom Plumbing Uniforms & Work Shirts',desc='Custom full-print plumbing uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom Plumber Shirts & Plumbing Uniforms: Work Shirts and Hoodies',desc='Custom full-print plumbing uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Trust at the door','Matching, clean uniforms tell homeowners they are letting in a professional business.'),('Your brand in every kitchen and basement','Your logo and number printed edge to edge stays visible when crews are bending, kneeling and reaching.'),('Made for wet, messy work','Moisture-wicking polyester dries fast, and the print is part of the fabric rather than a layer on top.')],
  faq=[('Can you match my van wrap colours?','Yes. Send your logo and van photo and we will match the colours.'),('Can I get polos for office staff?','Yes. Mix polos, tees, hoodies and caps in one order or in a bundle.')]),
 'roofing':dict(name='Roofing',h1='Custom roofing crew gear that handles the <em>heat</em>',
@@ -204,7 +204,7 @@ T={
  faq=[('Can the design use my green and brand colours?','Yes. We build the design around your logo and brand colours.'),('How many pieces can I order?','Any quantity. See the bundles for set pricing on crews of different sizes.')]),
 'pressure-washing':dict(name='Pressure washing',h1='Custom pressure washing uniforms <em>made</em> to be seen',
  sub='Full-print long sleeves, tees, polos and caps for pressure washing and soft washing crews. Water splashes, your logo, your services and phone number all printed edge to edge.',
- title='Custom Pressure Washing Shirts: Full-Print Sublimated Uniforms',desc='Custom full-print pressure washing uniforms, long sleeves, tees, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom Pressure Washing & Power Washing Shirts: Full-Print Uniforms',desc='Custom full-print pressure washing uniforms, long sleeves, tees, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Your services on your back','List driveways, roofs, fleets and your phone number across the back so every customer can call you.'),('Made for wet work','Moisture-wicking polyester dries fast, and the print is part of the fabric, not a patch or sticker.'),('Crew numbers and flag patches','Add crew numbers, a printed flag and contrast panels for a proper team-kit look.')],
  faq=[('Can the back list my services?','Yes. Phone numbers, email, services and a licensed-and-insured line can all be printed on the back.'),('Do you do hooded sun shirts?','Ask us in the form. We can quote hooded long sleeves for sun protection.')]),
 }
