@@ -25,7 +25,7 @@ HEAD='''<!doctype html>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css?v=7">
+<link rel="stylesheet" href="/style.css?v=8">
 {ld}
 </head>
 <body>
@@ -39,7 +39,7 @@ NAV='''<header class="nav"><div class="wrap">
 FOOT='''<footer><div class="wrap">
 <div><b>CrewWear Custom</b>Full-print custom uniforms for US trade businesses.</div>
 <div><b>Trades</b><a href="/hvac">HVAC</a><a href="/plumbing">Plumbing</a><a href="/roofing">Roofing</a><a href="/landscaping">Landscaping</a><a href="/pressure-washing">Pressure washing</a></div>
-<div><b>Company</b><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/guides">Guides</a><a href="/#faq">FAQ</a><a href="/returns">Returns &amp; shipping</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
+<div><b>Company</b><a href="/#products">Products</a><a href="/#bundles">Bundles</a><a href="/gallery">Gallery</a><a href="/guides">Guides</a><a href="/#faq">FAQ</a><a href="/about">About</a><a href="/returns">Returns &amp; shipping</a><a href="/terms">Terms</a><a href="/privacy">Privacy</a></div>
 </div></footer>
 <script src="/config.js"></script><script src="/app.js"></script>
 </body></html>
@@ -208,6 +208,8 @@ T={
  why=[('Your services on your back','List driveways, roofs, fleets and your phone number across the back so every customer can call you.'),('Made for wet work','Moisture-wicking polyester dries fast, and the print is part of the fabric, not a patch or sticker.'),('Crew numbers and flag patches','Add crew numbers, a printed flag and contrast panels for a proper team-kit look.')],
  faq=[('Can the back list my services?','Yes. Phone numbers, email, services and a licensed-and-insured line can all be printed on the back.'),('Do you do hooded sun shirts?','Ask us in the form. We can quote hooded long sleeves for sun protection.')]),
 }
+from trade_extra import EXTRA
+for _k,_v in EXTRA.items(): T[_k]['faq']=T[_k]['faq']+_v['faqs']
 urls=[SITE+'/']
 for slug,t in T.items():
     url=f'{SITE}/{slug}'; urls.append(url)
@@ -241,7 +243,7 @@ for slug,t in T.items():
 <section><div class="wrap"><p class="eyebrow">Why crews choose us</p><h2>Built for {nm} <em>crews</em></h2>
 <div class="bullets">'''
     for a,b in t['why']: h+=f'<div class="card"><h3>{a}</h3><p style="color:var(--slate);margin-top:6px;font-size:15px">{b}</p></div>'
-    h+='</div></div></section>\n<section class="why"><div class="wrap"><p class="eyebrow">Example designs</p><h2>See what it <em>looks</em> like</h2>'
+    h+='</div></div></section>\n<section><div class="wrap deep" style="max-width:780px"><p class="eyebrow">What to order</p><h2>Gear guide for <em>'+nm+'</em> crews</h2>'+EXTRA[slug]['deep']+'</div></section>\n<section class="why"><div class="wrap"><p class="eyebrow">Example designs</p><h2>See what it <em>looks</em> like</h2>'
     if imgs:
         h+='<div class="gal">'+''.join(f'<div class="g"><img src="/img/{f}" alt="{a}" width="900" height="900" loading="lazy"><span>{a}</span></div>' for f,a in imgs)+'</div>'
         h+='<p class="note">Example designs use sample brand names. Yours will carry your logo, colours and phone number.</p>'
@@ -271,6 +273,8 @@ write('gallery',gh)
 
 # ---- guides ----
 from guides import GUIDES
+from guides_more import MORE
+GUIDES=GUIDES+MORE
 os.makedirs(os.path.join(ROOT,'guides'),exist_ok=True)
 strip_=lambda t:re.sub(r'<[^>]+>','',t)
 for g in GUIDES:
@@ -292,6 +296,22 @@ h+='<div class="pagehead"><div class="wrap"><h1>Uniform <em>guides</em></h1><p>P
 h+=''.join(f'<h2><a href="/guides/{g["slug"]}">{strip_(g["title"])}</a></h2><p>{g["intro"]}</p>' for g in GUIDES)
 h+='</main>\n'+form('lead-guides')+STICKY+FOOT
 write('guides',h); urls.append(hub)
+
+# ---- about page ----
+aurl=f'{SITE}/about'
+abody='''<p>CrewWear Custom makes custom workwear for US trade and service businesses: HVAC, plumbing, roofing, landscaping and pressure washing crews.</p>
+<h2>What we make</h2>
+<p>Full-print sublimated polyester hoodies, long sleeves, tees and polos, plus a classic line with your logo on a fleece hoodie, cotton tee, cap and neon safety vest. Every piece is made to order for your business.</p>
+<h2>How we work</h2>
+<ol><li>You send your logo through the form.</li><li>We send a free design within 24 hours, with no obligation.</li><li>You approve it and pay a deposit.</li><li>We make and ship it, usually 15 to 20 days after approval and deposit.</li></ol>
+<h2>What is included</h2>
+<ul><li>No setup fees.</li><li>Free delivery on orders of $200 or more.</li><li>Orders ship from outside the United States. Import duties, taxes and customs fees, if any, are paid by the customer.</li><li>If an order arrives defective, damaged or not matching your approved design, we reprint or replace it. See <a href="/returns">returns and shipping</a>.</li></ul>
+<h2>Learn more</h2>
+<p>Read our <a href="/guides">uniform guides</a>, see the <a href="/gallery">gallery</a>, or <a href="/#design">send your logo for a free design</a>.</p>'''
+ald=json.dumps({"@context":"https://schema.org","@type":"AboutPage","name":"About CrewWear Custom","url":aurl,"isPartOf":{"@id":SITE+"/#website"},"about":{"@id":SITE+"/#org"}})
+h=HEAD.format(title='About CrewWear Custom',desc='CrewWear Custom makes custom full-print work uniforms for US trade businesses. Free design in 24 hours, no setup fees.',url=aurl,site=SITE,ld='<script type="application/ld+json">'+ald+'</script>')+NAV
+h+='<div class="pagehead"><div class="wrap"><h1>About <em>CrewWear Custom</em></h1><p>Custom work uniforms for trade crews.</p></div></div>\n<main class="prose">'+abody+'</main>\n'+form('lead-about')+STICKY+FOOT
+write('about',h); urls.append(aurl)
 urls.append(gurl)
 for s in ('privacy','terms','returns'): urls.append(f'{SITE}/{s}')
 open(os.path.join(ROOT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc><lastmod>2026-10-28</lastmod><changefreq>weekly</changefreq><priority>{"1.0" if u==SITE+"/" else "0.8"}</priority></url>\n' for u in urls)+'</urlset>\n')
@@ -304,13 +324,14 @@ for nm,slug in (('HVAC','hvac'),('Plumbing','plumbing'),('Roofing','roofing'),('
     h=re.sub(r'<a class="trade" href="[^"]*">(<i>[^<]*</i>'+nm+')',r'<a class="trade" href="/'+slug+r'">\1',h)
 h=re.sub(r'<footer>.*?</footer>',FOOT.split('<script')[0].replace('href="#design"','href="#design"'),h,count=1,flags=re.S)
 if '/app.js' not in h: h=h.replace('</body>','<script src="/config.js"></script><script src="/app.js"></script>\n</body>')
-if 'favicon.svg' not in h: h=h.replace('<link rel="stylesheet" href="/style.css?v=7">','<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/style.css?v=7">')
+if 'favicon.svg' not in h: h=h.replace('<link rel="stylesheet" href="/style.css?v=8">','<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="stylesheet" href="/style.css?v=8">')
 h=h.replace('<meta property="og:image" content="/img/hero.webp">','<meta property="og:image" content="'+SITE+'/img/og.jpg">\n<meta property="og:url" content="'+SITE+'/">\n<meta name="twitter:card" content="summary_large_image">')
 h=h.replace('<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#bundles" class="btn btn-o">Bundles</a></div>','<div class="sticky"><a href="#design" class="btn btn-p">Get free design</a><a href="#bundles" class="btn btn-o">Bundles</a></div>')
 open(p,'w').write(h)
 print('done',len(urls),'urls')
 
 # ---- llms.txt (for AI search engines) ----
+GUIDE_LINES=''.join(f"  - [{re.sub(r'<[^>]+>','',g['title'])}]({SITE}/guides/{g['slug']})\n" for g in GUIDES)
 open(os.path.join(ROOT,'llms.txt'),'w').write(f"""# {BRAND}
 
 > {BRAND} makes custom full-print (dye-sublimated) polyester work uniforms for US trade businesses: hoodies, long sleeves, polos, tees and caps for HVAC, plumbing, roofing, landscaping and pressure washing crews. Free design in 24 hours, no setup fees. Delivery usually takes 15 to 20 days after design approval and deposit, depending on the order. Free delivery on orders of $200 or more. Import duties, taxes and customs fees, if any, are paid by the customer.
@@ -323,8 +344,9 @@ open(os.path.join(ROOT,'llms.txt'),'w').write(f"""# {BRAND}
 - [Landscaping uniforms]({SITE}/landscaping)
 - [Pressure washing uniforms]({SITE}/pressure-washing)
 - [Gallery]({SITE}/gallery): photos of finished pieces and how your logo looks on them
-- [Guides]({SITE}/guides): cost, sublimation vs screen print, crew checklist, timeline
-- [Returns and shipping]({SITE}/returns)
+- [About]({SITE}/about)
+- [Guides]({SITE}/guides): plain answers for trade owners
+{GUIDE_LINES}- [Returns and shipping]({SITE}/returns)
 - [Terms]({SITE}/terms)
 - [Privacy]({SITE}/privacy)
 

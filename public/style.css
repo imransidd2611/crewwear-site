@@ -298,3 +298,9 @@ img.info{max-width:520px;width:100%;margin:26px auto 0;border-radius:var(--r);bo
 
 .prod .ph.cover{border:0;overflow:hidden;background:#cfd3d6}
 .ph.cover img{width:100%;height:100%;object-fit:cover;object-position:center 45%;display:block}
+
+.deep h3{margin:26px 0 8px;font-size:19px}
+.deep p{margin:0 0 12px;line-height:1.65}
+.deep ul{margin:0 0 12px;padding-left:22px}
+.deep li{margin:6px 0;line-height:1.55}
+.deep a{color:var(--ember);text-decoration:underline}
