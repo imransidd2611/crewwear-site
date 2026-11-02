@@ -184,27 +184,27 @@ PAIR={'hvac':('hoodie-sub-front.webp','fleece-front.webp'),'plumbing':('plumbing
 T={
 'hvac':dict(name='HVAC',h1='Custom HVAC uniforms that <em>sell</em> before you speak',
  sub='Full-print hoodies, long sleeves, polos and caps for heating and cooling crews. Your logo, your colours, your phone number, all over the garment.',
- title='Custom HVAC Uniforms & HVAC Shirts: Work Shirts and Hoodies',desc='Custom full-print HVAC uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom HVAC Uniforms & HVAC Shirts',desc='Custom full-print HVAC uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Look like a company','A crew in matching ice-and-flame gear looks established the moment it steps out of the van.'),('Your number on every back','Your phone number and services printed edge to edge turns every job site into a billboard.'),('Built for the attic and the roof','Lightweight polyester that breathes in summer, with hoodies and layers for winter call-outs.')],
  faq=[('Can the design show heating and cooling?','Yes. A frost and flame theme is our most popular HVAC look, and we can match it to your logo colours.'),('Can I put each technician name on the sleeve?','Yes. Names and crew numbers can be added per person.')]),
 'plumbing':dict(name='Plumbing',h1='Custom plumbing uniforms your customers <em>remember</em>',
  sub='Full-print hoodies, long sleeves, polos and caps for plumbing crews. Water, steel and copper themes in your own colours.',
- title='Custom Plumber Shirts & Plumbing Uniforms: Work Shirts and Hoodies',desc='Custom full-print plumbing uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom Plumber Shirts & Plumbing Uniforms',desc='Custom full-print plumbing uniforms, hoodies, long sleeves, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Trust at the door','Matching, clean uniforms tell homeowners they are letting in a professional business.'),('Your brand in every kitchen and basement','Your logo and number printed edge to edge stays visible when crews are bending, kneeling and reaching.'),('Made for wet, messy work','Moisture-wicking polyester dries fast, and the print is part of the fabric rather than a layer on top.')],
  faq=[('Can you match my van wrap colours?','Yes. Send your logo and van photo and we will match the colours.'),('Can I get polos for office staff?','Yes. Mix polos, tees, hoodies and caps in one order or in a bundle.')]),
 'roofing':dict(name='Roofing',h1='Custom roofing crew gear that handles the <em>heat</em>',
  sub='Full-print long sleeves, hoodies, tees and caps for roofing crews. Light polyester that keeps cooler in the sun, with your brand on every piece.',
- title='Custom Roofing Shirts: Full-Print Sublimated Crew Uniforms',desc='Custom full-print roofing uniforms, sun-ready long sleeves, hoodies, tees and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom Roofing Shirts & Crew Uniforms',desc='Custom full-print roofing uniforms, sun-ready long sleeves, hoodies, tees and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Sun-ready long sleeves','Lightweight long sleeves cover arms from the sun, and the full-print design keeps your brand visible from the street.'),('Seen from the ground','Big back prints with your name and number work like a moving sign on every roof and every lot.'),('One look for the whole crew','Crews, foremen and estimators in a matching set look like one serious operation.')],
  faq=[('Is the fabric breathable?','Yes. Our polyester garments are lightweight and moisture-wicking. Exact fabric details are confirmed on your quote.'),('Can I get different looks for crew and office?','Yes. Mix garments and designs in one order.')]),
 'landscaping':dict(name='Landscaping',h1='Custom landscaping uniforms that <em>grow</em> your brand',
  sub='Full-print polos, tees, long sleeves, hoodies and caps for lawn and landscape crews. Fresh greens or your own colours, with your logo everywhere.',
- title='Custom Landscaping & Lawn Care Shirts: Full-Print Uniforms',desc='Custom full-print landscaping uniforms, polos, tees, long sleeves and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom Landscaping & Lawn Care Shirts',desc='Custom full-print landscaping uniforms, polos, tees, long sleeves and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Every truck, every yard','A matching crew in bold, clean uniforms makes your business stand out on every street you work.'),('Print built into the fabric','Dye-sublimated print bonds into the polyester instead of sitting on top, made for washes and long days.'),('Cool and light','Polyester that breathes in heat, with long sleeves for sun and hoodies for the shoulder seasons.')],
  faq=[('Can the design use my green and brand colours?','Yes. We build the design around your logo and brand colours.'),('How many pieces can I order?','Any quantity. See the bundles for set pricing on crews of different sizes.')]),
 'pressure-washing':dict(name='Pressure washing',h1='Custom pressure washing uniforms <em>made</em> to be seen',
  sub='Full-print long sleeves, tees, polos and caps for pressure washing and soft washing crews. Water splashes, your logo, your services and phone number all printed edge to edge.',
- title='Custom Pressure Washing & Power Washing Shirts: Full-Print Uniforms',desc='Custom full-print pressure washing uniforms, long sleeves, tees, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
+ title='Custom Pressure Washing Shirts & Uniforms',desc='Custom full-print pressure washing uniforms, long sleeves, tees, polos and caps. Free design in 24 hours. Free delivery on orders $200+.',
  why=[('Your services on your back','List driveways, roofs, fleets and your phone number across the back so every customer can call you.'),('Made for wet work','Moisture-wicking polyester dries fast, and the print is part of the fabric, not a patch or sticker.'),('Crew numbers and flag patches','Add crew numbers, a printed flag and contrast panels for a proper team-kit look.')],
  faq=[('Can the back list my services?','Yes. Phone numbers, email, services and a licensed-and-insured line can all be printed on the back.'),('Do you do hooded sun shirts?','Ask us in the form. We can quote hooded long sleeves for sun protection.')]),
 }
@@ -323,7 +323,7 @@ h+='<div class="pagehead"><div class="wrap"><h1>About <em>CrewWear Custom</em></
 write('about',h); urls.append(aurl)
 urls.append(gurl)
 for s in ('privacy','terms','returns'): urls.append(f'{SITE}/{s}')
-open(os.path.join(ROOT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc><lastmod>2026-10-28</lastmod><changefreq>weekly</changefreq><priority>{"1.0" if u==SITE+"/" else "0.8"}</priority></url>\n' for u in urls)+'</urlset>\n')
+open(os.path.join(ROOT,'sitemap.xml'),'w').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join(f'<url><loc>{u}</loc><lastmod>2026-11-02</lastmod><changefreq>weekly</changefreq><priority>{"1.0" if u==SITE+"/" else "0.8"}</priority></url>\n' for u in urls)+'</urlset>\n')
 open(os.path.join(ROOT,'robots.txt'),'w').write('User-agent: *\nAllow: /\n\n'+''.join(f'User-agent: {b}\nAllow: /\n\n' for b in ('GPTBot','ChatGPT-User','OAI-SearchBot','PerplexityBot','ClaudeBot','Claude-Web','Google-Extended','Applebot-Extended','CCBot'))+f'Sitemap: {SITE}/sitemap.xml\n')
 
 # ---- patch the homepage ----
